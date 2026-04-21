@@ -371,7 +371,7 @@
                 const setListVal = (id, val) => {
                     const el = document.getElementById(id);
                     if (el && val) {
-                        const lines = val.split('\n').filter(line => line.trim() !== '');
+                        const lines = val.replace(/\n/g, '<br>').split('<br>').filter(line => line.trim() !== '');
                         el.innerHTML = lines.map(line => `<li>${line}</li>`).join('');
                     }
                 };
@@ -380,7 +380,7 @@
                 const setStepsVal = (id, val) => {
                     const el = document.getElementById(id);
                     if (el && val) {
-                        const lines = val.split('\n').filter(line => line.trim() !== '');
+                        const lines = val.replace(/\n/g, '<br>').split('<br>').filter(line => line.trim() !== '');
                         el.innerHTML = lines.map(line => `<p>${line}</p>`).join('');
                     }
                 };
@@ -391,7 +391,11 @@
                 setListVal('text-tue-rules', content['tue-rules']);
                 setVal('text-sat-time', content['sat-time']);
                 setListVal('text-sat-rules', content['sat-rules']);
-                setVal('text-jackpot-footer', content['jackpot-footer']);
+                const setValRich = (id, val) => {
+                    const el = document.getElementById(id);
+                    if (el && val) el.innerHTML = val.replace(/\n/g, '<br>');
+                };
+                setValRich('text-jackpot-footer', content['jackpot-footer']);
                 setStepsVal('text-win-steps', content['win-steps']);
             }
         }
