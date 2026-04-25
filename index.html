@@ -8,6 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .blink-colon { animation: blinker 1s step-start infinite; display: inline-block; margin: 0 0.05em; }
+        @keyframes blinker { 50% { opacity: 0; } }
+    </style>
 </head>
 <body>
 
@@ -257,8 +261,8 @@
                 const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const s = Math.floor((diff % (1000 * 60)) / 1000);
                 
-                document.getElementById('timer-display').innerText = 
-                    (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+                document.getElementById('timer-display').innerHTML = 
+                    (h < 10 ? "0" + h : h) + "<span class='blink-colon'>:</span>" + (m < 10 ? "0" + m : m) + "<span class='blink-colon'>:</span>" + (s < 10 ? "0" + s : s);
             } else {
                 isCountdownActive = false;
             }
@@ -313,8 +317,8 @@
             const s = Math.floor((diff % (1000 * 60)) / 1000);
 
             // Update DOM
-            document.getElementById('next-draw-timer').innerText = 
-                `${d}d ${h < 10 ? '0'+h : h}:${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
+            document.getElementById('next-draw-timer').innerHTML = 
+                `${d}d ${h < 10 ? '0'+h : h}<span class='blink-colon'>:</span>${m < 10 ? '0'+m : m}<span class='blink-colon'>:</span>${s < 10 ? '0'+s : s}`;
             document.getElementById('next-draw-label').innerText = labelText;
         }
 
