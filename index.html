@@ -218,10 +218,19 @@
                 // Clean the text to get just the number
                 const amount = parseFloat(text.replace(/[^0-9.]/g, ''));
                 
-                if (!isNaN(amount)) {
+                if (!isNaN(amount) && amount > 0) {
                     displayEl.innerText = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
+                    localStorage.setItem('cta_jackpot_backup', amount); // Save backup
+                } else {
+                    throw new Error("Invalid amount parsed from sheet");
                 }
-            } catch (e) { console.error("Error fetching jackpot:", e); }
+            } catch (e) {
+                console.error("Error fetching jackpot:", e);
+                // Fallback to local storage if fetch fails
+                const storedAmount = localStorage.getItem('cta_jackpot') || localStorage.getItem('cta_jackpot_backup');
+                if (storedAmount) displayEl.innerText = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'NZD' }).format(storedAmount);
+                else if (displayEl.innerText === "$0.00") displayEl.innerText = "$500.00";
+            }
         }
 
         // Check for jackpot updates every 5 seconds (in case admin updates it)
