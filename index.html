@@ -53,14 +53,30 @@
         <!-- Slide: Countdown (Only shows between 4pm and draw time) -->
         <div class="slide" id="countdown-slide">
             <h2>DRAW STARTS IN</h2>
-            <div class="countdown-timer" id="timer-display">00:00:00</div>
+            <div class="countdown-timer" id="timer-display">
+                <div>00<small>DAYS</small></div>
+                <span class="blink-colon">:</span>
+                <div>00<small>HOURS</small></div>
+                <span class="blink-colon">:</span>
+                <div>00<small>MINUTES</small></div>
+                <span class="blink-colon">:</span>
+                <div>00<small>SECONDS</small></div>
+            </div>
             <div class="countdown-label">GET YOUR TICKETS NOW!</div>
         </div>
 
         <!-- Slide: Next Draw General Countdown -->
         <div class="slide" id="next-draw-slide">
             <h2>NEXT DRAW IN</h2>
-            <div class="countdown-timer" id="next-draw-timer">00d 00:00:00</div>
+            <div class="countdown-timer" id="next-draw-timer">
+                <div>00<small>DAYS</small></div>
+                <span class="blink-colon">:</span>
+                <div>00<small>HOURS</small></div>
+                <span class="blink-colon">:</span>
+                <div>00<small>MINUTES</small></div>
+                <span class="blink-colon">:</span>
+                <div>00<small>SECONDS</small></div>
+            </div>
             <div class="countdown-label" id="next-draw-label">LOADING...</div>
         </div>
 
@@ -96,7 +112,7 @@
 
         <!-- Slide 5: How to Win -->
         <!-- Slide 5: How to Win -->
-        <div class="slide" id="slide-win">
+        <div class="slide" id="slide-win" style="top: 8px;">
             <h2>HOW TO WIN</h2>
             <p>If your ticket is pulled from the barrel:</p>
             <div class="step-box" id="text-win-steps">
@@ -115,7 +131,7 @@
 
     <script>
         // --- Configuration ---
-        const slideDuration = 5000; // 5 seconds per slide to fit 6 slides into 30s window
+        const slideDuration = 30000; // 30 seconds per slide for better readability
 
         // --- Slideshow Logic ---
         let currentSlide = 0;
@@ -124,6 +140,28 @@
         let isPaused = false;
         let slideInterval;
 
+        function shouldShowSlide(slide) {
+            const now = new Date();
+            const nzTimeStr = now.toLocaleString("en-US", {timeZone: "Pacific/Auckland"});
+            const nzDate = new Date(nzTimeStr);
+            const currentDay = nzDate.getDay(); // 0=Sun, 1=Mon... 6=Sat
+            
+            const slideId = slide.id;
+            
+            // Rules/Draw slides only on specific days
+            if (slideId === 'slide-tuesday' && currentDay !== 2) return false;
+            if (slideId === 'slide-saturday' && currentDay !== 6) return false;
+            
+            // "How to Win" (Play) only on draw days
+            if (slideId === 'slide-win' && currentDay !== 2 && currentDay !== 6) return false;
+            
+            // Countdown vs Next Draw logic
+            if (slideId === 'countdown-slide' && !isCountdownActive) return false;
+            if (slideId === 'next-draw-slide' && isCountdownActive) return false;
+            
+            return true;
+        }
+
         function prevSlide() {
             slides[currentSlide].classList.remove('active');
             let loopCount = 0;
@@ -131,10 +169,8 @@
                 currentSlide = (currentSlide - 1 + slides.length) % slides.length;
                 loopCount++;
                 if (loopCount > slides.length) break;
-            } while (
-                (slides[currentSlide].id === 'countdown-slide' && !isCountdownActive) ||
-                (slides[currentSlide].id === 'next-draw-slide' && isCountdownActive)
-            );
+            } while (!shouldShowSlide(slides[currentSlide]));
+            
             slides[currentSlide].classList.add('active');
             resetProgressBar();
             resetInterval();
@@ -165,21 +201,16 @@
             // Remove active class from current
             slides[currentSlide].classList.remove('active');
             
-            // Find next valid slide (skip countdown if not active)
+            // Find next valid slide
             let loopCount = 0;
             do {
                 currentSlide = (currentSlide + 1) % slides.length;
                 loopCount++;
-                if (loopCount > slides.length) break; // Safety break
-            } while (
-                (slides[currentSlide].id === 'countdown-slide' && !isCountdownActive) ||
-                (slides[currentSlide].id === 'next-draw-slide' && isCountdownActive)
-            );
+                if (loopCount > slides.length) break; 
+            } while (!shouldShowSlide(slides[currentSlide]));
             
             // Add active class to next
             slides[currentSlide].classList.add('active');
-            
-            // Reset Progress Bar Animation
             resetProgressBar();
         }
 
@@ -191,8 +222,13 @@
         }
 
         // Start the rotation
-        resetProgressBar();
-        resetInterval();
+        if (!shouldShowSlide(slides[currentSlide])) {
+            nextSlide();
+            resetInterval(); // Ensure interval is reset if we jump
+        } else {
+            resetProgressBar();
+            resetInterval();
+        }
 
         // --- Jackpot Logic ---
         // TODO: Paste your Google Sheet CSV URL here inside the quotes
@@ -219,7 +255,7 @@
                 const amount = parseFloat(text.replace(/[^0-9.]/g, ''));
                 
                 if (!isNaN(amount) && amount > 0) {
-                    displayEl.innerText = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
+                    displayEl.innerText = new Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD' }).format(amount);
                     localStorage.setItem('cta_jackpot_backup', amount); // Save backup
                 } else {
                     throw new Error("Invalid amount parsed from sheet");
@@ -270,8 +306,18 @@
                 const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const s = Math.floor((diff % (1000 * 60)) / 1000);
                 
+                const pad = (n) => n < 10 ? '0' + n : n;
+                const syncDelay = -(Date.now() % 1000) + "ms";
+                const colon = `<span class='blink-colon' style='animation-delay: ${syncDelay}'>:</span>`;
+
                 document.getElementById('timer-display').innerHTML = 
-                    (h < 10 ? "0" + h : h) + "<span class='blink-colon'>:</span>" + (m < 10 ? "0" + m : m) + "<span class='blink-colon'>:</span>" + (s < 10 ? "0" + s : s);
+                    `<div>00<small>DAYS</small></div>
+                     ${colon}
+                     <div>${pad(h)}<small>HOURS</small></div>
+                     ${colon}
+                     <div>${pad(m)}<small>MINUTES</small></div>
+                     ${colon}
+                     <div>${pad(s)}<small>SECONDS</small></div>`;
             } else {
                 isCountdownActive = false;
             }
@@ -326,8 +372,18 @@
             const s = Math.floor((diff % (1000 * 60)) / 1000);
 
             // Update DOM
+            const pad = (n) => n < 10 ? '0' + n : n;
+            const syncDelay = -(Date.now() % 1000) + "ms";
+            const colon = `<span class='blink-colon' style='animation-delay: ${syncDelay}'>:</span>`;
+            
             document.getElementById('next-draw-timer').innerHTML = 
-                `${d}d ${h < 10 ? '0'+h : h}<span class='blink-colon'>:</span>${m < 10 ? '0'+m : m}<span class='blink-colon'>:</span>${s < 10 ? '0'+s : s}`;
+                `<div>${pad(d)}<small>DAYS</small></div>
+                 ${colon}
+                 <div>${pad(h)}<small>HOURS</small></div>
+                 ${colon}
+                 <div>${pad(m)}<small>MINUTES</small></div>
+                 ${colon}
+                 <div>${pad(s)}<small>SECONDS</small></div>`;
             document.getElementById('next-draw-label').innerText = labelText;
         }
 
