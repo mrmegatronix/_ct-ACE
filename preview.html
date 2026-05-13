@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
     <style>
         body {
-            background-color: #000;
+            background-color: #050505;
             color: #fff;
             margin: 0;
             padding: 40px;
@@ -22,46 +22,53 @@
             color: #d4af37;
             margin-bottom: 40px;
             font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            letter-spacing: 4px;
         }
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 40px;
             justify-content: center;
         }
+        /* Fixed size scaling wrapper for 100% bulletproof rendering */
         .slide-wrapper {
             position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            background: #111;
+            width: 480px;
+            height: 270px;
+            background: radial-gradient(circle at center, #1e1b10 0%, #000000 100%);
             border: 3px solid #d4af37;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             overflow: hidden;
         }
+        /* Override display logic so they all show at exactly 0.25 scale */
         .slide-wrapper .slide {
             position: absolute !important;
             top: 0 !important;
             left: 0 !important;
             width: 1920px !important;
             height: 1080px !important;
+            max-width: none !important;
             opacity: 1 !important;
             display: flex !important;
             visibility: visible !important;
-            transform-origin: top left;
-            /* Scale calculation: container is 100% wide, base is 1920px */
-            /* We use a ResizeObserver in JS to perfectly scale it */
+            transform-origin: top left !important;
+            transform: scale(0.25) !important;
+            margin: 0 !important;
+            padding: 40px !important;
         }
         .slide-title-bar {
             text-align: center;
-            padding: 10px;
-            background: #222;
-            color: #ccc;
-            font-size: 0.9rem;
+            padding: 12px;
+            background: #111;
+            color: #d4af37;
+            font-size: 0.85rem;
             text-transform: uppercase;
+            font-weight: 700;
             letter-spacing: 2px;
             border-bottom: 2px solid #d4af37;
-            margin-bottom: -3px;
+            margin-bottom: 0;
         }
         /* Replicate blink for preview */
         .blink-colon { animation: blinker 1s step-start infinite; display: inline-block; margin: 0 0.05em; }
@@ -82,7 +89,7 @@
                     <img src="logo.png" alt="Venue Logo" class="venue-logo" onerror="this.style.display='none'">
                     <h1 id="text-main-title">CHASE THE ACE</h1>
                     <img src="ace-of-spades.png" alt="Ace of Spades" class="ace-logo" onerror="this.style.display='none'">
-                    <h2 id="text-main-subtitle">Join us for the Draw!</h2>
+                    <h2 id="text-main-subtitle" style="text-align: center; width: 100%;">JOIN US FOR OUR TWO WEEKLY DRAWS</h2>
                 </div>
             </div>
         </div>
@@ -94,7 +101,7 @@
                 <div class="slide" id="slide-jackpot">
                     <h2>CURRENT JACKPOT</h2>
                     <div class="jackpot-amount" id="display-jackpot">$500.00</div>
-                    <p id="text-jackpot-footer">Jackpot increases by $100 after every draw!</p>
+                    <div class="countdown-label" id="text-jackpot-footer" style="margin-top: 40px; text-transform: uppercase; text-align: center; width: 100%;">Jackpot increases by $100 after every draw!</div>
                 </div>
             </div>
         </div>
@@ -124,7 +131,7 @@
             <div class="slide-title-bar">Next Draw</div>
             <div class="slide-wrapper">
                 <div class="slide" id="next-draw-slide">
-                    <h2>NEXT DRAW IN</h2>
+                    <h2>NEXT DRAW</h2>
                     <div class="countdown-timer" id="next-draw-timer">
                         <div>02<small>DAYS</small></div>
                         <span class="blink-colon">:</span>
@@ -134,7 +141,7 @@
                         <span class="blink-colon">:</span>
                         <div>00<small>SECONDS</small></div>
                     </div>
-                    <div class="countdown-label" id="next-draw-label">TUESDAY DRAW</div>
+                    <h2 id="next-draw-label" style="margin-top: 20px; text-align: center; width: 100%;">SATURDAY DRAW</h2>
                 </div>
             </div>
         </div>
@@ -181,7 +188,9 @@
             <div class="slide-wrapper">
                 <div class="slide" id="slide-win">
                     <h2>HOW TO WIN</h2>
-                    <p>If your ticket is pulled from the barrel:</p>
+                    <div class="time-box" style="margin-bottom: 20px;">
+                        <h3 style="text-transform: none; margin: 0;">If your ticket is pulled from the barrel:</h3>
+                    </div>
                     <div class="step-box" id="text-win-steps">
                         <p>1. Pick a card from the cabinet (52 Cards)</p>
                         <p>2. Flip the <strong>ACE OF SPADES</strong></p>
@@ -194,27 +203,11 @@
     </div>
 
     <!-- Navigation Hub (Optional) -->
-    <div style="margin-top: 50px; text-align: center;">
-        <a href="index.html" style="color: #d4af37; text-decoration: none; font-weight: bold; border: 1px solid #d4af37; padding: 10px 20px; border-radius: 5px;">Return to Main Display</a>
+    <div style="margin-top: 50px; text-align: center; padding-bottom: 50px;">
+        <a href="index.html" style="color: #000; background: #d4af37; text-decoration: none; font-weight: bold; border: 2px solid #d4af37; padding: 12px 30px; border-radius: 5px; text-transform: uppercase; letter-spacing: 2px;">Return to Main Display</a>
     </div>
 
     <script>
-        // Resize observer to dynamically scale 1920x1080 slides to fit inside their responsive grid containers
-        const wrappers = document.querySelectorAll('.slide-wrapper');
-        const resizeObserver = new ResizeObserver(entries => {
-            for (let entry of entries) {
-                const wrapper = entry.target;
-                const slide = wrapper.querySelector('.slide');
-                if (slide) {
-                    const width = entry.contentRect.width;
-                    const scale = width / 1920;
-                    slide.style.transform = \`scale(\${scale})\`;
-                }
-            }
-        });
-        
-        wrappers.forEach(wrapper => resizeObserver.observe(wrapper));
-
         // Load Content Data from LocalStorage (Syncs with the preview)
         function loadPreviewData() {
             const storedContent = localStorage.getItem('cta_slide_content');
@@ -222,19 +215,19 @@
                 const content = JSON.parse(storedContent);
                 
                 const setVal = (id, val) => { const el = document.getElementById(id); if (el && val) el.innerText = val; };
-                const setValRich = (id, val) => { const el = document.getElementById(id); if (el && val) el.innerHTML = val.replace(/\\n/g, '<br>'); };
+                const setValRich = (id, val) => { const el = document.getElementById(id); if (el && val) el.innerHTML = val.replace(/\n/g, '<br>'); };
                 const setListVal = (id, val) => {
                     const el = document.getElementById(id);
                     if (el && val) {
-                        const lines = val.replace(/\\n/g, '<br>').split('<br>').filter(line => line.trim() !== '');
-                        el.innerHTML = lines.map(line => \`<li>\${line}</li>\`).join('');
+                        const lines = val.replace(/\n/g, '<br>').split('<br>').filter(line => line.trim() !== '');
+                        el.innerHTML = lines.map(line => `<li>${line}</li>`).join('');
                     }
                 };
                 const setStepsVal = (id, val) => {
                     const el = document.getElementById(id);
                     if (el && val) {
-                        const lines = val.replace(/\\n/g, '<br>').split('<br>').filter(line => line.trim() !== '');
-                        el.innerHTML = lines.map(line => \`<p>\${line}</p>\`).join('');
+                        const lines = val.replace(/\n/g, '<br>').split('<br>').filter(line => line.trim() !== '');
+                        el.innerHTML = lines.map(line => `<p>${line}</p>`).join('');
                     }
                 };
 
@@ -246,6 +239,30 @@
                 setListVal('text-sat-rules', content['sat-rules']);
                 setValRich('text-jackpot-footer', content['jackpot-footer']);
                 setStepsVal('text-win-steps', content['win-steps']);
+            }
+
+            // Sync Custom Font Sizes from Admin
+            const storedSizes = localStorage.getItem('cta_slide_sizes');
+            if (storedSizes) {
+                const sizes = JSON.parse(storedSizes);
+                const slideMap = {
+                    'main': 'slide-main',
+                    'jackpot': 'slide-jackpot',
+                    'countdown': 'countdown-slide',
+                    'next-draw': 'next-draw-slide',
+                    'tuesday': 'slide-tuesday',
+                    'saturday': 'slide-saturday',
+                    'win': 'slide-win'
+                };
+                for (const [key, id] of Object.entries(slideMap)) {
+                    if (sizes[key]) {
+                        const el = document.getElementById(id);
+                        if (el) {
+                            // Apply the font size adjustment (default base is 1rem)
+                            el.style.fontSize = (sizes[key] / 100) + 'rem';
+                        }
+                    }
+                }
             }
             
             // Fetch Jackpot 

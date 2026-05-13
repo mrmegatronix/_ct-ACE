@@ -120,7 +120,7 @@ h2::after {
 h3 {
     font-family: 'Playfair Display', serif;
     font-weight: 700; /* Added Bold */
-    font-size: 5.1em; /* Changed to em */
+    font-size: 4.8em; /* Unify size */
     color: #f59e0b; /* Ember Gold */
     margin: 15px 0;
     text-shadow: 0 2px 8px rgba(0,0,0,0.6);
@@ -170,8 +170,9 @@ ul.rules-list li, .step-box p {
 /* Jackpot Display */
 .jackpot-amount {
     font-family: 'Playfair Display', serif;
-    font-size: 18.5em;
+    font-size: 16.5em;
     font-weight: 900;
+    font-variant-numeric: tabular-nums;
     background: linear-gradient(to bottom, #fff 0%, #d4af37 40%, #f59e0b 60%, #d4af37 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -196,20 +197,22 @@ ul.rules-list li, .step-box p {
 
 .time-box h3 {
     margin: 0;
-    font-size: 4.1em; /* Changed to em */
+    font-size: 4.8em; /* Unify size */
     font-weight: 700;
 }
 
 /* Countdown Timer */
 .countdown-timer {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Playfair Display', serif;
     font-weight: 900;
-    font-size: 15.2em;
+    font-size: 16.5em;
     line-height: 1;
-    color: white;
-    text-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
-    margin: 30px 0;
     font-variant-numeric: tabular-nums;
+    background: linear-gradient(to bottom, #fff 0%, #d4af37 40%, #f59e0b 60%, #d4af37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.8));
+    margin: 30px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -220,6 +223,11 @@ ul.rules-list li, .step-box p {
     font-size: 0.6em;
     opacity: 0.6;
     margin-top: -0.2em;
+    animation: blinker 1s step-start infinite;
+}
+
+@keyframes blinker {
+    50% { opacity: 0; }
 }
 
 .countdown-timer div {
@@ -235,6 +243,8 @@ ul.rules-list li, .step-box p {
     font-weight: 900;
     letter-spacing: 6px;
     color: #d4af37;
+    -webkit-text-fill-color: #d4af37;
+    background: none;
     margin-top: 15px;
     opacity: 0.9;
     text-transform: uppercase;
@@ -247,6 +257,8 @@ ul.rules-list li, .step-box p {
     letter-spacing: 8px;
     color: #f59e0b;
     font-weight: 800; /* Extra bold */
+    text-align: center;
+    width: 100%;
 }
 
 /* Rule Page Specific Timers */
