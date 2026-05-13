@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chase the Ace - Slide Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 40px;
+            font-family: 'Inter', sans-serif;
+            overflow-y: auto;
+        }
+        h1.preview-title {
+            text-align: center;
+            color: #d4af37;
+            margin-bottom: 40px;
+            font-family: 'Playfair Display', serif;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            gap: 40px;
+            justify-content: center;
+        }
+        .slide-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            background: #111;
+            border: 3px solid #d4af37;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+        .slide-wrapper .slide {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 1920px !important;
+            height: 1080px !important;
+            opacity: 1 !important;
+            display: flex !important;
+            visibility: visible !important;
+            transform-origin: top left;
+            /* Scale calculation: container is 100% wide, base is 1920px */
+            /* We use a ResizeObserver in JS to perfectly scale it */
+        }
+        .slide-title-bar {
+            text-align: center;
+            padding: 10px;
+            background: #222;
+            color: #ccc;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #d4af37;
+            margin-bottom: -3px;
+        }
+        /* Replicate blink for preview */
+        .blink-colon { animation: blinker 1s step-start infinite; display: inline-block; margin: 0 0.05em; }
+        @keyframes blinker { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <h1 class="preview-title">Chase the Ace - Master Slide Preview</h1>
+
+    <div class="grid-container">
+
+        <!-- Slide 1 -->
+        <div>
+            <div class="slide-title-bar">Main Title & Logo</div>
+            <div class="slide-wrapper">
+                <div class="slide" id="slide-main">
+                    <img src="logo.png" alt="Venue Logo" class="venue-logo" onerror="this.style.display='none'">
+                    <h1 id="text-main-title">CHASE THE ACE</h1>
+                    <img src="ace-of-spades.png" alt="Ace of Spades" class="ace-logo" onerror="this.style.display='none'">
+                    <h2 id="text-main-subtitle">Join us for the Draw!</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div>
+            <div class="slide-title-bar">Current Jackpot</div>
+            <div class="slide-wrapper">
+                <div class="slide" id="slide-jackpot">
+                    <h2>CURRENT JACKPOT</h2>
+                    <div class="jackpot-amount" id="display-jackpot">$500.00</div>
+                    <p id="text-jackpot-footer">Jackpot increases by $100 after every draw!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div>
+            <div class="slide-title-bar">Active Countdown</div>
+            <div class="slide-wrapper">
+                <div class="slide" id="countdown-slide">
+                    <h2>DRAW STARTS IN</h2>
+                    <div class="countdown-timer" id="timer-display">
+                        <div>00<small>DAYS</small></div>
+                        <span class="blink-colon">:</span>
+                        <div>00<small>HOURS</small></div>
+                        <span class="blink-colon">:</span>
+                        <div>00<small>MINUTES</small></div>
+                        <span class="blink-colon">:</span>
+                        <div>00<small>SECONDS</small></div>
+                    </div>
+                    <div class="countdown-label">GET YOUR TICKETS NOW!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div>
+            <div class="slide-title-bar">Next Draw</div>
+            <div class="slide-wrapper">
+                <div class="slide" id="next-draw-slide">
+                    <h2>NEXT DRAW IN</h2>
+                    <div class="countdown-timer" id="next-draw-timer">
+                        <div>02<small>DAYS</small></div>
+                        <span class="blink-colon">:</span>
+                        <div>14<small>HOURS</small></div>
+                        <span class="blink-colon">:</span>
+                        <div>30<small>MINUTES</small></div>
+                        <span class="blink-colon">:</span>
+                        <div>00<small>SECONDS</small></div>
+                    </div>
+                    <div class="countdown-label" id="next-draw-label">TUESDAY DRAW</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div>
+            <div class="slide-title-bar">Tuesday Rules</div>
+            <div class="slide-wrapper">
+                <div class="slide" id="slide-tuesday">
+                    <h2>TUESDAY DRAW</h2>
+                    <div class="time-box">
+                        <h3 id="text-tue-time">Draw Time: 5:30 PM</h3>
+                    </div>
+                    <ul class="rules-list" id="text-tue-rules">
+                        <li>Purchase a beverage <strong>3:00 PM - 5:30 PM</strong></li>
+                        <li>Receive a ticket for every drink purchased</li>
+                        <li>Be here for the draw to win!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div>
+            <div class="slide-title-bar">Saturday Rules</div>
+            <div class="slide-wrapper">
+                <div class="slide" id="slide-saturday">
+                    <h2>SATURDAY DRAW</h2>
+                    <div class="time-box">
+                        <h3 id="text-sat-time">Draw Time: 6:30 PM</h3>
+                    </div>
+                    <ul class="rules-list" id="text-sat-rules">
+                        <li>Purchase a beverage <strong>3:00 PM - 6:30 PM</strong></li>
+                        <li>Receive a ticket for every drink purchased</li>
+                        <li>Be here for the draw to win!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div>
+            <div class="slide-title-bar">How To Win</div>
+            <div class="slide-wrapper">
+                <div class="slide" id="slide-win">
+                    <h2>HOW TO WIN</h2>
+                    <p>If your ticket is pulled from the barrel:</p>
+                    <div class="step-box" id="text-win-steps">
+                        <p>1. Pick a card from the cabinet (52 Cards)</p>
+                        <p>2. Flip the <strong>ACE OF SPADES</strong></p>
+                        <p>3. WIN THE JACKPOT!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation Hub (Optional) -->
+    <div style="margin-top: 50px; text-align: center;">
+        <a href="index.html" style="color: #d4af37; text-decoration: none; font-weight: bold; border: 1px solid #d4af37; padding: 10px 20px; border-radius: 5px;">Return to Main Display</a>
+    </div>
+
+    <script>
+        // Resize observer to dynamically scale 1920x1080 slides to fit inside their responsive grid containers
+        const wrappers = document.querySelectorAll('.slide-wrapper');
+        const resizeObserver = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                const wrapper = entry.target;
+                const slide = wrapper.querySelector('.slide');
+                if (slide) {
+                    const width = entry.contentRect.width;
+                    const scale = width / 1920;
+                    slide.style.transform = \`scale(\${scale})\`;
+                }
+            }
+        });
+        
+        wrappers.forEach(wrapper => resizeObserver.observe(wrapper));
+
+        // Load Content Data from LocalStorage (Syncs with the preview)
+        function loadPreviewData() {
+            const storedContent = localStorage.getItem('cta_slide_content');
+            if (storedContent) {
+                const content = JSON.parse(storedContent);
+                
+                const setVal = (id, val) => { const el = document.getElementById(id); if (el && val) el.innerText = val; };
+                const setValRich = (id, val) => { const el = document.getElementById(id); if (el && val) el.innerHTML = val.replace(/\\n/g, '<br>'); };
+                const setListVal = (id, val) => {
+                    const el = document.getElementById(id);
+                    if (el && val) {
+                        const lines = val.replace(/\\n/g, '<br>').split('<br>').filter(line => line.trim() !== '');
+                        el.innerHTML = lines.map(line => \`<li>\${line}</li>\`).join('');
+                    }
+                };
+                const setStepsVal = (id, val) => {
+                    const el = document.getElementById(id);
+                    if (el && val) {
+                        const lines = val.replace(/\\n/g, '<br>').split('<br>').filter(line => line.trim() !== '');
+                        el.innerHTML = lines.map(line => \`<p>\${line}</p>\`).join('');
+                    }
+                };
+
+                setVal('text-main-title', content['main-title']);
+                setVal('text-main-subtitle', content['main-subtitle']);
+                setVal('text-tue-time', content['tue-time']);
+                setListVal('text-tue-rules', content['tue-rules']);
+                setVal('text-sat-time', content['sat-time']);
+                setListVal('text-sat-rules', content['sat-rules']);
+                setValRich('text-jackpot-footer', content['jackpot-footer']);
+                setStepsVal('text-win-steps', content['win-steps']);
+            }
+            
+            // Fetch Jackpot 
+            const storedJackpot = localStorage.getItem('cta_jackpot') || localStorage.getItem('cta_jackpot_backup');
+            if (storedJackpot) {
+                document.getElementById('display-jackpot').innerText = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'NZD' }).format(storedJackpot);
+            }
+        }
+        
+        loadPreviewData();
+        setInterval(loadPreviewData, 2000); // Poll for real-time preview updates from admin panel
+    </script>
+</body>
+</html>
