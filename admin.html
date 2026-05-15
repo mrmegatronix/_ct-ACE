@@ -75,6 +75,19 @@
         .content-row { margin-bottom: 25px; text-align: left; }
         .content-row label { font-weight: bold; color: #d4af37; display: block; margin-bottom: 5px; }
         .content-row input { margin: 5px 0 10px 0; padding: 10px; font-size: 1.1rem; }
+        
+        /* Compact Mode */
+        body.compact { padding: 1rem; height: auto; display: block; }
+        body.compact .admin-panel { padding: 1rem; max-width: 100%; border-radius: 8px; }
+        body.compact h1 { font-size: 1.2rem; }
+        body.compact h2 { font-size: 1rem; margin-top: 1rem; }
+        body.compact p { font-size: 0.8rem; margin: 0.5rem 0; }
+        body.compact input { padding: 8px; font-size: 1rem; margin: 10px 0; }
+        body.compact button { padding: 10px; font-size: 1rem; }
+        body.compact .scroll-container { max-height: 250px; }
+        body.compact .content-row { margin-bottom: 15px; }
+        body.compact .content-row label { font-size: 0.7rem; }
+        body.compact .content-row input { padding: 6px; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -247,6 +260,9 @@
         }
 
         // Initialize
+        if (window.location.search.includes('compact=true')) {
+            document.body.classList.add('compact');
+        }
         loadSlideSizes();
         loadSlideContent();
     </script>
