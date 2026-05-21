@@ -12,6 +12,11 @@
         .blink-colon { animation: blinker 1s step-start infinite; display: inline-block; margin: 0 0.05em; }
         @keyframes blinker { 50% { opacity: 0; } }
     </style>
+    <script>
+        if (window.self !== window.top) {
+            document.write('<style>#progress-bar, #progress-container, .timer-bar, .timer-container, .progress-bar, .progress-container { display: none !important; }</style>');
+        }
+    </script>
 </head>
 <body>
 
