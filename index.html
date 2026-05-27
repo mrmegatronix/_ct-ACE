@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chase the Ace - Display</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .blink-colon { animation: blinker 1s step-start infinite; display: inline-block; margin: 0 0.05em; }
-        @keyframes blinker { 50% { opacity: 0; } }
+        .blink-colon { display: inline-block; margin: 0 0.05em; }
     </style>
     <script>
         if (window.self !== window.top) {
@@ -18,6 +20,7 @@
         }
     </script>
 </head>
+
 <body>
 
     <!-- Background Animation Container -->
@@ -37,7 +40,7 @@
 
     <!-- Main Slideshow Container -->
     <div id="slideshow-container">
-        
+
         <!-- Slide 1: Main Title & Logo -->
         <!-- Slide 1: Main Title & Logo -->
         <div class="slide active" id="slide-main">
@@ -52,7 +55,9 @@
         <div class="slide" id="slide-jackpot">
             <h2>CURRENT JACKPOT</h2>
             <div class="jackpot-amount" id="display-jackpot">$0.00</div>
-            <div class="countdown-label" id="text-jackpot-footer" style="margin-top: 40px; text-transform: uppercase; text-align: center; width: 100%;">Jackpot increases by $100 after every draw!</div>
+            <div class="countdown-label" id="text-jackpot-footer"
+                style="margin-top: 40px; text-transform: uppercase; text-align: center; width: 100%;">Jackpot increases
+                by $100 after every draw!</div>
         </div>
 
         <!-- Slide: Countdown (Only shows between 4pm and draw time) -->
@@ -149,23 +154,23 @@
 
         function shouldShowSlide(slide) {
             const now = new Date();
-            const nzTimeStr = now.toLocaleString("en-US", {timeZone: "Pacific/Auckland"});
+            const nzTimeStr = now.toLocaleString("en-US", { timeZone: "Pacific/Auckland" });
             const nzDate = new Date(nzTimeStr);
             const currentDay = nzDate.getDay(); // 0=Sun, 1=Mon... 6=Sat
-            
+
             const slideId = slide.id;
-            
+
             // Rules/Draw slides only on specific days
             if (slideId === 'slide-tuesday' && currentDay !== 2) return false;
             if (slideId === 'slide-saturday' && currentDay !== 6) return false;
-            
+
             // "How to Win" (Play) only on draw days
             if (slideId === 'slide-win' && currentDay !== 2 && currentDay !== 6) return false;
-            
+
             // Countdown vs Next Draw logic
             if (slideId === 'countdown-slide' && !isCountdownActive) return false;
             if (slideId === 'next-draw-slide' && isCountdownActive) return false;
-            
+
             return true;
         }
 
@@ -177,7 +182,7 @@
                 loopCount++;
                 if (loopCount > slides.length) break;
             } while (!shouldShowSlide(slides[currentSlide]));
-            
+
             slides[currentSlide].classList.add('active');
             resetProgressBar();
             resetInterval();
@@ -207,15 +212,15 @@
         function nextSlide() {
             // Remove active class from current
             slides[currentSlide].classList.remove('active');
-            
+
             // Find next valid slide
             let loopCount = 0;
             do {
                 currentSlide = (currentSlide + 1) % slides.length;
                 loopCount++;
-                if (loopCount > slides.length) break; 
+                if (loopCount > slides.length) break;
             } while (!shouldShowSlide(slides[currentSlide]));
-            
+
             // Add active class to next
             slides[currentSlide].classList.add('active');
             resetProgressBar();
@@ -240,11 +245,11 @@
         // --- Jackpot Logic ---
         // TODO: Paste your Google Sheet CSV URL here inside the quotes
         // Example: "https://docs.google.com/spreadsheets/d/e/2PACX-.../pub?output=csv"
-        const googleSheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTWKQ868KUAuJv03Z4ULML1XtCTp7aJ8066j17W5pAYpT9yTj0foQt-PMa3aJCViFC6pzKX3jZU8pnk/pub?output=csv"; 
+        const googleSheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTWKQ868KUAuJv03Z4ULML1XtCTp7aJ8066j17W5pAYpT9yTj0foQt-PMa3aJCViFC6pzKX3jZU8pnk/pub?output=csv";
 
         async function updateJackpotDisplay() {
             const displayEl = document.getElementById('display-jackpot');
-            
+
             // Fallback to local storage if URL isn't set yet
             if (!googleSheetUrl) {
                 const storedAmount = localStorage.getItem('cta_jackpot');
@@ -257,10 +262,10 @@
                 // Fetch data from Google Sheets (adding timestamp to prevent caching)
                 const response = await fetch(googleSheetUrl + '&t=' + Date.now());
                 const text = await response.text();
-                
+
                 // Clean the text to get just the number
                 const amount = parseFloat(text.replace(/[^0-9.]/g, ''));
-                
+
                 if (!isNaN(amount) && amount > 0) {
                     displayEl.innerText = new Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD' }).format(amount);
                     localStorage.setItem('cta_jackpot_backup', amount); // Save backup
@@ -284,21 +289,21 @@
         function updateCountdown() {
             const now = new Date();
             // Create date object based on NZ time
-            const nzTimeStr = now.toLocaleString("en-US", {timeZone: "Pacific/Auckland"});
+            const nzTimeStr = now.toLocaleString("en-US", { timeZone: "Pacific/Auckland" });
             const nzDate = new Date(nzTimeStr);
-            
+
             const day = nzDate.getDay(); // 0=Sun, 1=Mon, 2=Tue... 6=Sat
             const hours = nzDate.getHours();
             const minutes = nzDate.getMinutes();
-            
+
             let target = null;
-            
+
             // Tuesday (Day 2): Active 4:00 PM (16:00) to 5:30 PM (17:30)
             if (day === 2 && (hours >= 16 && (hours < 17 || (hours === 17 && minutes < 30)))) {
                 target = new Date(nzDate);
                 target.setHours(17, 30, 0, 0);
             }
-            
+
             // Saturday (Day 6): Active 4:00 PM (16:00) to 6:30 PM (18:30)
             if (day === 6 && (hours >= 16 && (hours < 18 || (hours === 18 && minutes < 30)))) {
                 target = new Date(nzDate);
@@ -308,16 +313,16 @@
             if (target) {
                 isCountdownActive = true;
                 const diff = target - nzDate;
-                
+
                 const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const s = Math.floor((diff % (1000 * 60)) / 1000);
-                
-                const pad = (n) => n < 10 ? '0' + n : n;
-                const syncDelay = -(Date.now() % 1000) + "ms";
-                const colon = `<span class='blink-colon' style='animation-delay: ${syncDelay}'>:</span>`;
 
-                document.getElementById('timer-display').innerHTML = 
+                const pad = (n) => n < 10 ? '0' + n : n;
+                const showColon = (s % 2 === 0);
+                const colon = `<span class='blink-colon' style='opacity: ${showColon ? '0.6' : '0'}'>:</span>`;
+
+                document.getElementById('timer-display').innerHTML =
                     `<div>00<small>DAYS</small></div>
                      ${colon}
                      <div>${pad(h)}<small>HOURS</small></div>
@@ -337,14 +342,14 @@
         // --- Global Next Draw Countdown Logic ---
         function updateNextDrawTimer() {
             const now = new Date();
-            const nzTimeStr = now.toLocaleString("en-US", {timeZone: "Pacific/Auckland"});
+            const nzTimeStr = now.toLocaleString("en-US", { timeZone: "Pacific/Auckland" });
             const nzDate = new Date(nzTimeStr);
 
             // Define Draw Times: Tue 17:30 (Day 2), Sat 18:30 (Day 6)
             function getNextOccurrence(dayIndex, hours, minutes) {
                 let target = new Date(nzDate);
                 target.setHours(hours, minutes, 0, 0);
-                
+
                 if (nzDate.getDay() === dayIndex) {
                     if (nzDate.getTime() >= target.getTime()) {
                         target.setDate(target.getDate() + 7);
@@ -362,7 +367,7 @@
             // Determine which is closer
             let target;
             let labelText;
-            
+
             if (nextTue < nextSat) {
                 target = nextTue;
                 labelText = "TUESDAY DRAW";
@@ -380,10 +385,10 @@
 
             // Update DOM
             const pad = (n) => n < 10 ? '0' + n : n;
-            const syncDelay = -(Date.now() % 1000) + "ms";
-            const colon = `<span class='blink-colon' style='animation-delay: ${syncDelay}'>:</span>`;
-            
-            document.getElementById('next-draw-timer').innerHTML = 
+            const showColon = (s % 2 === 0);
+            const colon = `<span class='blink-colon' style='opacity: ${showColon ? '0.6' : '0'}'>:</span>`;
+
+            document.getElementById('next-draw-timer').innerHTML =
                 `<div>${pad(d)}<small>DAYS</small></div>
                  ${colon}
                  <div>${pad(h)}<small>HOURS</small></div>
@@ -423,7 +428,7 @@
                 }
             }
         }
-        
+
         // Check for size updates every 2 seconds
         updateSlideSizes();
         setInterval(updateSlideSizes, 2000);
@@ -433,7 +438,7 @@
             const storedContent = localStorage.getItem('cta_slide_content');
             if (storedContent) {
                 const content = JSON.parse(storedContent);
-                
+
                 // Helper to set text content
                 const setVal = (id, val) => {
                     const el = document.getElementById(id);
@@ -493,4 +498,5 @@
     </script>
 
 </body>
+
 </html>
