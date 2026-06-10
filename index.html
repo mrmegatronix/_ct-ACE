@@ -64,13 +64,13 @@
         <div class="slide" id="countdown-slide">
             <h2>DRAW STARTS IN</h2>
             <div class="countdown-timer" id="timer-display">
-                <div>00<small>DAYS</small></div>
+                <div><span id="cd-d">00</span><small>DAYS</small></div>
                 <span class="blink-colon">:</span>
-                <div>00<small>HOURS</small></div>
+                <div><span id="cd-h">00</span><small>HOURS</small></div>
                 <span class="blink-colon">:</span>
-                <div>00<small>MINUTES</small></div>
+                <div><span id="cd-m">00</span><small>MINUTES</small></div>
                 <span class="blink-colon">:</span>
-                <div>00<small>SECONDS</small></div>
+                <div><span id="cd-s">00</span><small>SECONDS</small></div>
             </div>
             <div class="countdown-label">GET YOUR TICKETS NOW!</div>
         </div>
@@ -79,13 +79,13 @@
         <div class="slide" id="next-draw-slide">
             <h2>NEXT DRAW</h2>
             <div class="countdown-timer" id="next-draw-timer">
-                <div>00<small>DAYS</small></div>
+                <div><span id="nd-d">00</span><small>DAYS</small></div>
                 <span class="blink-colon">:</span>
-                <div>00<small>HOURS</small></div>
+                <div><span id="nd-h">00</span><small>HOURS</small></div>
                 <span class="blink-colon">:</span>
-                <div>00<small>MINUTES</small></div>
+                <div><span id="nd-m">00</span><small>MINUTES</small></div>
                 <span class="blink-colon">:</span>
-                <div>00<small>SECONDS</small></div>
+                <div><span id="nd-s">00</span><small>SECONDS</small></div>
             </div>
             <h2 id="next-draw-label" style="margin-top: 20px; text-align: center; width: 100%;">LOADING...</h2>
         </div>
@@ -122,7 +122,7 @@
 
         <!-- Slide 5: How to Win -->
         <!-- Slide 5: How to Win -->
-        <div class="slide" id="slide-win" style="top: 158px; left: 408px;">
+        <div class="slide" id="slide-win">
             <h2>HOW TO WIN</h2>
             <div class="time-box" style="margin-bottom: 20px;">
                 <h3 style="text-transform: none; margin: 0;">If your ticket is pulled from the barrel:</h3>
@@ -319,17 +319,11 @@
                 const s = Math.floor((diff % (1000 * 60)) / 1000);
 
                 const pad = (n) => n < 10 ? '0' + n : n;
-                const showColon = (s % 2 === 0);
-                const colon = `<span class='blink-colon' style='opacity: ${showColon ? '0.6' : '0'}'>:</span>`;
-
-                document.getElementById('timer-display').innerHTML =
-                    `<div>00<small>DAYS</small></div>
-                     ${colon}
-                     <div>${pad(h)}<small>HOURS</small></div>
-                     ${colon}
-                     <div>${pad(m)}<small>MINUTES</small></div>
-                     ${colon}
-                     <div>${pad(s)}<small>SECONDS</small></div>`;
+                
+                document.getElementById('cd-d').innerText = '00';
+                document.getElementById('cd-h').innerText = pad(h);
+                document.getElementById('cd-m').innerText = pad(m);
+                document.getElementById('cd-s').innerText = pad(s);
             } else {
                 isCountdownActive = false;
             }
@@ -385,17 +379,12 @@
 
             // Update DOM
             const pad = (n) => n < 10 ? '0' + n : n;
-            const showColon = (s % 2 === 0);
-            const colon = `<span class='blink-colon' style='opacity: ${showColon ? '0.6' : '0'}'>:</span>`;
-
-            document.getElementById('next-draw-timer').innerHTML =
-                `<div>${pad(d)}<small>DAYS</small></div>
-                 ${colon}
-                 <div>${pad(h)}<small>HOURS</small></div>
-                 ${colon}
-                 <div>${pad(m)}<small>MINUTES</small></div>
-                 ${colon}
-                 <div>${pad(s)}<small>SECONDS</small></div>`;
+            
+            document.getElementById('nd-d').innerText = pad(d);
+            document.getElementById('nd-h').innerText = pad(h);
+            document.getElementById('nd-m').innerText = pad(m);
+            document.getElementById('nd-s').innerText = pad(s);
+            
             document.getElementById('next-draw-label').innerText = labelText;
         }
 

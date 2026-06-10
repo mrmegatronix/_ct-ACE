@@ -261,6 +261,7 @@ ul.rules-list li,
     margin-top: -0.2em;
     display: inline-block;
     margin: 0 0.05em;
+    animation: blinker 1s linear infinite;
 }
 
 @keyframes blinker {
