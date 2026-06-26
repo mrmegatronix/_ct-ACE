@@ -253,7 +253,6 @@
                 };
 
                 setVal('text-main-title', content['main-title']);
-                setVal('text-main-subtitle', content['main-subtitle']);
                 setVal('text-tue-time', content['tue-time']);
                 setListVal('text-tue-rules', content['tue-rules']);
                 setVal('text-sat-time', content['sat-time']);
@@ -262,6 +261,19 @@
                 setStepsVal('text-win-steps', content['win-steps']);
                 setVal('text-winner-title', content['winner-title']);
                 setValRich('text-winner-message', content['winner-message']);
+            }
+
+            // Dynamically adjust main subtitle text based on paused state
+            const isPaused = localStorage.getItem('cta_paused') !== 'false';
+            const subtitleEl = document.getElementById('text-main-subtitle');
+            if (subtitleEl) {
+                if (isPaused) {
+                    subtitleEl.innerText = "GAMEPLAY TEMPORARILY ON HOLD";
+                } else {
+                    const storedContent = localStorage.getItem('cta_slide_content');
+                    const content = storedContent ? JSON.parse(storedContent) : null;
+                    subtitleEl.innerText = (content && content['main-subtitle']) ? content['main-subtitle'] : "JOIN US FOR OUR TWO WEEKLY DRAWS";
+                }
             }
 
             // Sync Custom Font Sizes from Admin

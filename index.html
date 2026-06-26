@@ -445,6 +445,7 @@
         setInterval(updateSlideSizes, 2000);
 
         // --- Polling Gameplay Paused State ---
+        let originalMainSubtitle = "";
         function updatePausedState() {
             const paused = localStorage.getItem('cta_paused') !== 'false';
             if (paused !== isGameplayPaused) {
@@ -453,6 +454,21 @@
                 if (!shouldShowSlide(slides[currentSlide])) {
                     nextSlide();
                     resetInterval();
+                }
+            }
+
+            // Dynamically adjust main subtitle text
+            const subtitleEl = document.getElementById('text-main-subtitle');
+            if (subtitleEl) {
+                if (!originalMainSubtitle) {
+                    originalMainSubtitle = subtitleEl.innerText;
+                }
+                if (isGameplayPaused) {
+                    subtitleEl.innerText = "GAMEPLAY TEMPORARILY ON HOLD";
+                } else {
+                    const storedContent = localStorage.getItem('cta_slide_content');
+                    const content = storedContent ? JSON.parse(storedContent) : null;
+                    subtitleEl.innerText = (content && content['main-subtitle']) ? content['main-subtitle'] : originalMainSubtitle;
                 }
             }
         }
