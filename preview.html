@@ -9,13 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
+        html, body {
             background-color: #050505;
             color: #fff;
             margin: 0;
-            padding: 40px;
+            padding: 0 40px 40px 40px;
             font-family: 'Inter', sans-serif;
-            overflow-y: auto;
+            overflow-y: auto !important;
+            height: auto !important;
         }
         h1.preview-title {
             text-align: center;
@@ -24,6 +25,9 @@
             font-family: 'Playfair Display', serif;
             text-transform: uppercase;
             letter-spacing: 4px;
+            font-size: 2.5rem !important;
+            text-shadow: none !important;
+            animation: none !important;
         }
         .grid-container {
             display: flex;
@@ -200,6 +204,23 @@
             </div>
         </div>
 
+        <!-- Slide 8 -->
+        <div>
+            <div class="slide-title-bar">Winner / Paused Announcement</div>
+            <div class="slide-wrapper">
+                <div class="slide" id="slide-winner">
+                    <h2 id="text-winner-title">CONGRATULATIONS</h2>
+                    <div class="winner-box">
+                        <p id="text-winner-message">
+                            Congratulations to our recent <strong>$3400 WINNER!</strong><br><br>
+                            Chase the Ace gameplay is now paused and will resume & reset in a few weeks time!<br><br>
+                            Thank you for playing!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Navigation Hub (Optional) -->
@@ -239,6 +260,8 @@
                 setListVal('text-sat-rules', content['sat-rules']);
                 setValRich('text-jackpot-footer', content['jackpot-footer']);
                 setStepsVal('text-win-steps', content['win-steps']);
+                setVal('text-winner-title', content['winner-title']);
+                setValRich('text-winner-message', content['winner-message']);
             }
 
             // Sync Custom Font Sizes from Admin
@@ -252,7 +275,8 @@
                     'next-draw': 'next-draw-slide',
                     'tuesday': 'slide-tuesday',
                     'saturday': 'slide-saturday',
-                    'win': 'slide-win'
+                    'win': 'slide-win',
+                    'winner': 'slide-winner'
                 };
                 for (const [key, id] of Object.entries(slideMap)) {
                     if (sizes[key]) {

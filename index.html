@@ -134,6 +134,18 @@
             </div>
         </div>
 
+        <!-- Slide 6: Winner Announcement (Paused) -->
+        <div class="slide" id="slide-winner">
+            <h2 id="text-winner-title">CONGRATULATIONS</h2>
+            <div class="winner-box">
+                <p id="text-winner-message">
+                    Congratulations to our recent <strong>$3400 WINNER!</strong><br><br>
+                    Chase the Ace gameplay is now paused and will resume & reset in a few weeks time!<br><br>
+                    Thank you for playing!
+                </p>
+            </div>
+        </div>
+
     </div>
 
     <!-- Progress Bar -->
@@ -151,6 +163,7 @@
         let isCountdownActive = false;
         let isPaused = false;
         let slideInterval;
+        let isGameplayPaused = localStorage.getItem('cta_paused') !== 'false';
 
         function shouldShowSlide(slide) {
             const now = new Date();
@@ -159,6 +172,14 @@
             const currentDay = nzDate.getDay(); // 0=Sun, 1=Mon... 6=Sat
 
             const slideId = slide.id;
+
+            if (isGameplayPaused) {
+                // When gameplay is paused, only show the main title slide and the winner slide
+                return slideId === 'slide-main' || slideId === 'slide-winner';
+            }
+
+            // Normal rotation: hide the winner announcement slide
+            if (slideId === 'slide-winner') return false;
 
             // Rules/Draw slides only on specific days
             if (slideId === 'slide-tuesday' && currentDay !== 2) return false;
@@ -403,7 +424,8 @@
                     'next-draw': 'next-draw-slide',
                     'tuesday': 'slide-tuesday',
                     'saturday': 'slide-saturday',
-                    'win': 'slide-win'
+                    'win': 'slide-win',
+                    'winner': 'slide-winner'
                 };
 
                 for (const [key, id] of Object.entries(slideMap)) {
@@ -421,6 +443,21 @@
         // Check for size updates every 2 seconds
         updateSlideSizes();
         setInterval(updateSlideSizes, 2000);
+
+        // --- Polling Gameplay Paused State ---
+        function updatePausedState() {
+            const paused = localStorage.getItem('cta_paused') !== 'false';
+            if (paused !== isGameplayPaused) {
+                isGameplayPaused = paused;
+                // Force transition to a valid slide if the current slide is no longer allowed
+                if (!shouldShowSlide(slides[currentSlide])) {
+                    nextSlide();
+                    resetInterval();
+                }
+            }
+        }
+        updatePausedState();
+        setInterval(updatePausedState, 2000);
 
         // --- Slide Text Content Logic ---
         function updateSlideContent() {
@@ -464,6 +501,8 @@
                 };
                 setValRich('text-jackpot-footer', content['jackpot-footer']);
                 setStepsVal('text-win-steps', content['win-steps']);
+                setVal('text-winner-title', content['winner-title']);
+                setValRich('text-winner-message', content['winner-message']);
             }
         }
 

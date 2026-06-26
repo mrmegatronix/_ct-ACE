@@ -8,14 +8,16 @@
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
-            padding: 50px; 
+            padding: 50px 20px; 
             background: #111; 
             color: #eee;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            align-items: flex-start;
+            min-height: 100vh;
             margin: 0;
+            overflow-y: auto;
+            box-sizing: border-box;
         }
         .admin-panel { 
             background: #1a1a1a; 
@@ -103,6 +105,14 @@
         
         <hr class="section-divider">
 
+        <h2>Gameplay Status</h2>
+        <div style="margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; background: #2a2a2a; padding: 15px; border-radius: 8px; border: 1px solid #444;">
+            <label style="margin: 0; color: #d4af37; font-weight: bold; font-size: 1.1rem; cursor: pointer;" for="pausedToggle">Pause Gameplay / Show Winner Slide</label>
+            <input type="checkbox" id="pausedToggle" style="width: auto; margin: 0; transform: scale(1.5); cursor: pointer;" onchange="savePausedState()">
+        </div>
+
+        <hr class="section-divider">
+
         <h2>Slide Text Sizes (%)</h2>
         <p class="section-desc">Adjust the text size for each slide (default is 100).</p>
 
@@ -127,6 +137,9 @@
             
             <label>How to Win (Slide 7)</label>
             <input type="number" id="scale-win" class="scale-input" placeholder="100">
+            
+            <label>Winner/Paused (Slide 8)</label>
+            <input type="number" id="scale-winner" class="scale-input" placeholder="100">
         </div>
 
         <button onclick="saveSlideSizes()" class="save-btn">Save Text Sizes</button>
@@ -173,6 +186,14 @@
                 <label>How to Win Steps (Slide 7, One per line)</label>
                 <textarea id="content-win-steps" placeholder="1. Pick a card from the cabinet (52 Cards)"></textarea>
             </div>
+
+            <!-- Winner Slide -->
+            <div class="content-row">
+                <label>Winner Slide Title</label>
+                <input type="text" id="content-winner-title" placeholder="CONGRATULATIONS">
+                <label>Winner Message</label>
+                <textarea id="content-winner-message" style="min-height: 120px;" placeholder="Congratulations to our recent $3400 WINNER!&#10;&#10;Chase the Ace gameplay is now paused and will resume & reset in a few weeks time!&#10;&#10;Thank you for playing!"></textarea>
+            </div>
         </div>
 
         <button onclick="saveSlideContent()" class="save-btn">Save Text Content</button>
@@ -186,6 +207,19 @@
             document.getElementById('jackpotInput').value = currentVal;
         }
 
+        // Load paused toggle state
+        const isPaused = localStorage.getItem('cta_paused') !== 'false';
+        document.getElementById('pausedToggle').checked = isPaused;
+
+        function savePausedState() {
+            const isPaused = document.getElementById('pausedToggle').checked;
+            localStorage.setItem('cta_paused', isPaused ? 'true' : 'false');
+            const msg = document.getElementById('statusMsg');
+            msg.innerText = "Status Saved! Updating screen...";
+            msg.style.color = "lightgreen";
+            setTimeout(() => { msg.innerText = ""; }, 3000);
+        }
+
         function saveJackpot() {
             const amount = document.getElementById('jackpotInput').value;
             if(amount) {
@@ -197,7 +231,7 @@
         }
 
         // --- Slide Size Logic ---
-        const slideIds = ['main', 'jackpot', 'countdown', 'next-draw', 'tuesday', 'saturday', 'win'];
+        const slideIds = ['main', 'jackpot', 'countdown', 'next-draw', 'tuesday', 'saturday', 'win', 'winner'];
 
         function loadSlideSizes() {
             const storedSizes = localStorage.getItem('cta_slide_sizes');
@@ -230,7 +264,8 @@
             'main-title', 'main-subtitle', 
             'tue-time', 'tue-rules', 
             'sat-time', 'sat-rules', 
-            'jackpot-footer', 'win-steps'
+            'jackpot-footer', 'win-steps',
+            'winner-title', 'winner-message'
         ];
 
         function loadSlideContent() {
