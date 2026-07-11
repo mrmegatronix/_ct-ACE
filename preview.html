@@ -229,6 +229,14 @@
     </div>
 
     <script>
+        // One-time draw reset to unpause and set jackpot to 500
+        if (localStorage.getItem('cta_draw_reset_20260711') !== 'done') {
+            localStorage.setItem('cta_paused', 'false');
+            localStorage.setItem('cta_jackpot', '500');
+            localStorage.setItem('cta_jackpot_backup', '500');
+            localStorage.setItem('cta_draw_reset_20260711', 'done');
+        }
+
         // Load Content Data from LocalStorage (Syncs with the preview)
         function loadPreviewData() {
             const storedContent = localStorage.getItem('cta_slide_content');
@@ -264,7 +272,7 @@
             }
 
             // Dynamically adjust main subtitle text based on paused state
-            const isPaused = localStorage.getItem('cta_paused') !== 'false';
+            const isPaused = localStorage.getItem('cta_paused') === 'true';
             const subtitleEl = document.getElementById('text-main-subtitle');
             if (subtitleEl) {
                 if (isPaused) {

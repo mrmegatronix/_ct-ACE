@@ -149,6 +149,14 @@
     </div>
 
     <script>
+        // One-time draw reset to unpause and set jackpot to 500
+        if (localStorage.getItem('cta_draw_reset_20260711') !== 'done') {
+            localStorage.setItem('cta_paused', 'false');
+            localStorage.setItem('cta_jackpot', '500');
+            localStorage.setItem('cta_jackpot_backup', '500');
+            localStorage.setItem('cta_draw_reset_20260711', 'done');
+        }
+
         // --- Configuration ---
         const slideDuration = 30000; // 30 seconds per slide for better readability
 
@@ -158,7 +166,7 @@
         let isCountdownActive = false;
         let isPaused = false;
         let slideInterval;
-        let isGameplayPaused = localStorage.getItem('cta_paused') !== 'false';
+        let isGameplayPaused = localStorage.getItem('cta_paused') === 'true';
 
         function shouldShowSlide(slide) {
             const now = new Date();
@@ -442,7 +450,7 @@
         // --- Polling Gameplay Paused State ---
         let originalMainSubtitle = "";
         function updatePausedState() {
-            const paused = localStorage.getItem('cta_paused') !== 'false';
+            const paused = localStorage.getItem('cta_paused') === 'true';
             if (paused !== isGameplayPaused) {
                 isGameplayPaused = paused;
                 // Force transition to a valid slide if the current slide is no longer allowed

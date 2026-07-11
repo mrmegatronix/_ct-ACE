@@ -201,6 +201,14 @@
     </div>
 
     <script>
+        // One-time draw reset to unpause and set jackpot to 500
+        if (localStorage.getItem('cta_draw_reset_20260711') !== 'done') {
+            localStorage.setItem('cta_paused', 'false');
+            localStorage.setItem('cta_jackpot', '500');
+            localStorage.setItem('cta_jackpot_backup', '500');
+            localStorage.setItem('cta_draw_reset_20260711', 'done');
+        }
+
         // Load current value on page load
         const currentVal = localStorage.getItem('cta_jackpot');
         if(currentVal) {
@@ -208,7 +216,7 @@
         }
 
         // Load paused toggle state
-        const isPaused = localStorage.getItem('cta_paused') !== 'false';
+        const isPaused = localStorage.getItem('cta_paused') === 'true';
         document.getElementById('pausedToggle').checked = isPaused;
 
         function savePausedState() {
