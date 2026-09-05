@@ -113,6 +113,18 @@
 
         <hr class="section-divider">
 
+        <h2>Safe Vault - Card Inventory</h2>
+        <p class="section-desc">Cards remaining in the cabinet safe (1 to 52):</p>
+        <div style="display: flex; gap: 10px; align-items: center; justify-content: center; margin: 10px 0 15px 0;">
+            <button type="button" onclick="adjustCards(-1)" style="width: 50px; font-size: 1.5rem; padding: 10px; flex-shrink: 0;">-</button>
+            <input type="number" id="cardsRemainingInput" min="1" max="52" placeholder="e.g. 36" style="margin: 0; max-width: 140px;">
+            <button type="button" onclick="adjustCards(1)" style="width: 50px; font-size: 1.5rem; padding: 10px; flex-shrink: 0;">+</button>
+        </div>
+        <button onclick="saveCardsRemaining()">Update Card Inventory</button>
+        <div class="status" id="cardsStatusMsg"></div>
+
+        <hr class="section-divider">
+
         <h2>Slide Text Sizes (%)</h2>
         <p class="section-desc">Adjust the text size for each slide (default is 100).</p>
 
@@ -140,6 +152,9 @@
             
             <label>Winner/Paused (Slide 8)</label>
             <input type="number" id="scale-winner" class="scale-input" placeholder="100">
+
+            <label>Safe Vault (Slide 9)</label>
+            <input type="number" id="scale-vault" class="scale-input" placeholder="100">
         </div>
 
         <button onclick="saveSlideSizes()" class="save-btn">Save Text Sizes</button>
@@ -238,8 +253,36 @@
             }
         }
 
+        // Load card countdown / inventory
+        function loadCardsRemaining() {
+            const stored = localStorage.getItem('cta_cards_remaining') || 36;
+            const input = document.getElementById('cardsRemainingInput');
+            if (input) input.value = stored;
+        }
+
+        function adjustCards(delta) {
+            const input = document.getElementById('cardsRemainingInput');
+            let val = (parseInt(input.value) || 36) + delta;
+            val = Math.max(1, Math.min(52, val));
+            input.value = val;
+            saveCardsRemaining();
+        }
+
+        function saveCardsRemaining() {
+            const input = document.getElementById('cardsRemainingInput');
+            const val = Math.max(1, Math.min(52, parseInt(input.value) || 36));
+            input.value = val;
+            localStorage.setItem('cta_cards_remaining', val);
+            const msg = document.getElementById('cardsStatusMsg');
+            if (msg) {
+                msg.innerText = `Saved! ${val} cards remaining (${52 - val} flipped). Screen updating...`;
+                msg.style.color = "lightgreen";
+                setTimeout(() => { msg.innerText = ""; }, 3000);
+            }
+        }
+
         // --- Slide Size Logic ---
-        const slideIds = ['main', 'jackpot', 'countdown', 'next-draw', 'tuesday', 'saturday', 'win', 'winner'];
+        const slideIds = ['main', 'jackpot', 'countdown', 'next-draw', 'tuesday', 'saturday', 'win', 'winner', 'vault'];
 
         function loadSlideSizes() {
             const storedSizes = localStorage.getItem('cta_slide_sizes');
@@ -306,6 +349,7 @@
         if (window.location.search.includes('compact=true')) {
             document.body.classList.add('compact');
         }
+        loadCardsRemaining();
         loadSlideSizes();
         loadSlideContent();
     </script>

@@ -539,4 +539,176 @@ ul.rules-list li,
     font-weight: 800;
     text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
     display: inline-block;
-}
+}
+
+/* --- 1080p Signage Slides (Tuesday, Saturday, How to Win, Safe Vault) --- */
+.slide.slide-fullscreen {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 1920px !important;
+    padding: 36px 48px !important;
+    box-sizing: border-box;
+    justify-content: stretch !important;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 48;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.font-headline {
+    font-family: 'Bebas Neue', 'Outfit', sans-serif !important;
+}
+
+.glow-gold {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 40px rgba(212, 175, 55, 0.4);
+}
+
+.glow-amber {
+    text-shadow: 0 0 20px rgba(245, 158, 11, 0.8), 0 0 40px rgba(245, 158, 11, 0.4);
+}
+
+.box-glow-gold {
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.22), inset 0 0 35px rgba(212, 175, 55, 0.08);
+}
+
+.box-glow-amber {
+    box-shadow: 0 0 50px rgba(245, 158, 11, 0.22), inset 0 0 35px rgba(245, 158, 11, 0.08);
+}
+
+.colon-blink {
+    display: inline-block;
+    margin: 0 0.06em;
+    animation: colon-pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes colon-pulse {
+    0%, 100% { opacity: 1; filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.8)); }
+    50% { opacity: 0.25; filter: none; }
+}
+
+@keyframes ping-glow {
+    0% { transform: scale(0.95); opacity: 0.8; box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+    70% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
+    100% { transform: scale(0.95); opacity: 0.8; box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+.live-dot-gold {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #d4af37;
+    animation: ping-glow 2s infinite;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.live-dot-amber {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #f59e0b;
+    animation: ping-glow 2s infinite;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.signage-card-gold {
+    background: rgba(14, 17, 24, 0.94);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 28px;
+    border: 2px solid rgba(212, 175, 55, 0.45);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(212, 175, 55, 0.15);
+    height: 100%;
+    width: 100%;
+    padding: 40px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.signage-card-amber {
+    background: rgba(14, 17, 24, 0.94);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 28px;
+    border: 2px solid rgba(245, 158, 11, 0.5);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(245, 158, 11, 0.15);
+    height: 100%;
+    width: 100%;
+    padding: 40px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.signage-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: rgba(6, 8, 13, 0.88);
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    padding: 26px 38px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.signage-row-cta-gold {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.22) 0%, rgba(245, 158, 11, 0.15) 50%, rgba(212, 175, 55, 0.22) 100%);
+    border: 2.5px solid #d4af37;
+    border-radius: 22px;
+    padding: 28px 38px;
+    box-shadow: 0 15px 45px rgba(212, 175, 55, 0.3);
+}
+
+.signage-row-cta-amber {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: linear-gradient(90deg, rgba(245, 158, 11, 0.22) 0%, rgba(212, 175, 55, 0.15) 50%, rgba(245, 158, 11, 0.22) 100%);
+    border: 2.5px solid #f59e0b;
+    border-radius: 22px;
+    padding: 28px 38px;
+    box-shadow: 0 15px 45px rgba(245, 158, 11, 0.3);
+}
+
+.time-badge-gold {
+    background: rgba(212, 175, 55, 0.18);
+    border: 3px solid #d4af37;
+    color: #d4af37;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    padding: 16px 40px;
+    border-radius: 9999px;
+    font-weight: bold;
+    box-shadow: 0 0 35px rgba(212, 175, 55, 0.4);
+    white-space: nowrap;
+}
+
+.time-badge-amber {
+    background: rgba(245, 158, 11, 0.18);
+    border: 3px solid #f59e0b;
+    color: #f59e0b;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    padding: 16px 40px;
+    border-radius: 9999px;
+    font-weight: bold;
+    box-shadow: 0 0 35px rgba(245, 158, 11, 0.4);
+    white-space: nowrap;
+}
+
