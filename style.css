@@ -571,7 +571,8 @@ ul.rules-list li,
 }
 
 .font-headline {
-    font-family: 'Bebas Neue', 'Outfit', sans-serif !important;
+    font-family: 'Playfair Display', serif !important;
+    letter-spacing: 1px;
 }
 
 .glow-gold {
@@ -636,7 +637,7 @@ ul.rules-list li,
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(212, 175, 55, 0.15);
     height: 100%;
     width: 100%;
-    padding: 40px 52px;
+    padding: 38px 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -654,7 +655,7 @@ ul.rules-list li,
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(245, 158, 11, 0.15);
     height: 100%;
     width: 100%;
-    padding: 40px 52px;
+    padding: 38px 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -670,7 +671,7 @@ ul.rules-list li,
     background: rgba(6, 8, 13, 0.88);
     border: 1.5px solid rgba(255, 255, 255, 0.12);
     border-radius: 22px;
-    padding: 26px 38px;
+    padding: 24px 38px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
 }
 
@@ -681,7 +682,7 @@ ul.rules-list li,
     background: linear-gradient(90deg, rgba(212, 175, 55, 0.22) 0%, rgba(245, 158, 11, 0.15) 50%, rgba(212, 175, 55, 0.22) 100%);
     border: 2.5px solid #d4af37;
     border-radius: 22px;
-    padding: 28px 38px;
+    padding: 26px 38px;
     box-shadow: 0 15px 45px rgba(212, 175, 55, 0.3);
 }
 
@@ -692,7 +693,7 @@ ul.rules-list li,
     background: linear-gradient(90deg, rgba(245, 158, 11, 0.22) 0%, rgba(212, 175, 55, 0.15) 50%, rgba(245, 158, 11, 0.22) 100%);
     border: 2.5px solid #f59e0b;
     border-radius: 22px;
-    padding: 28px 38px;
+    padding: 26px 38px;
     box-shadow: 0 15px 45px rgba(245, 158, 11, 0.3);
 }
 
@@ -700,12 +701,12 @@ ul.rules-list li,
     background: rgba(212, 175, 55, 0.18);
     border: 3px solid #d4af37;
     color: #d4af37;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 64px;
+    font-family: 'Playfair Display', serif;
+    font-size: 78px;
     line-height: 1;
-    padding: 16px 40px;
+    padding: 14px 38px;
     border-radius: 9999px;
-    font-weight: bold;
+    font-weight: 900;
     box-shadow: 0 0 35px rgba(212, 175, 55, 0.4);
     white-space: nowrap;
 }
@@ -714,12 +715,12 @@ ul.rules-list li,
     background: rgba(245, 158, 11, 0.18);
     border: 3px solid #f59e0b;
     color: #f59e0b;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 64px;
+    font-family: 'Playfair Display', serif;
+    font-size: 78px;
     line-height: 1;
-    padding: 16px 40px;
+    padding: 14px 38px;
     border-radius: 9999px;
-    font-weight: bold;
+    font-weight: 900;
     box-shadow: 0 0 35px rgba(245, 158, 11, 0.4);
     white-space: nowrap;
 }

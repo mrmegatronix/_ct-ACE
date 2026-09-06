@@ -113,8 +113,8 @@
 
         <hr class="section-divider">
 
-        <h2>Safe Vault - Card Inventory</h2>
-        <p class="section-desc">Cards remaining in the cabinet safe (1 to 52):</p>
+        <h2>The Card Vault - Card Inventory</h2>
+        <p class="section-desc">Cards remaining in the card vault (1 to 52) or auto-synced via CSV:</p>
         <div style="display: flex; gap: 10px; align-items: center; justify-content: center; margin: 10px 0 15px 0;">
             <button type="button" onclick="adjustCards(-1)" style="width: 50px; font-size: 1.5rem; padding: 10px; flex-shrink: 0;">-</button>
             <input type="number" id="cardsRemainingInput" min="1" max="52" placeholder="e.g. 36" style="margin: 0; max-width: 140px;">
@@ -122,6 +122,11 @@
         </div>
         <button onclick="saveCardsRemaining()">Update Card Inventory</button>
         <div class="status" id="cardsStatusMsg"></div>
+        <div style="margin-top: 12px; font-size: 0.85rem; color: #a0aec0; text-align: left; background: rgba(0,0,0,0.3); padding: 10px 14px; border-radius: 8px;">
+            <strong style="color: #d4af37;">CSV Auto-Sync Active:</strong>
+            <br>Row 1: [A1] Jackpot Amount, [B1] Cards Flipped Count
+            <br>Row 2: [A2] "jackpot amount", [B2] "cards flipped"
+        </div>
 
         <hr class="section-divider">
 
@@ -153,7 +158,7 @@
             <label>Winner/Paused (Slide 8)</label>
             <input type="number" id="scale-winner" class="scale-input" placeholder="100">
 
-            <label>Safe Vault (Slide 9)</label>
+            <label>The Card Vault (Slide 9)</label>
             <input type="number" id="scale-vault" class="scale-input" placeholder="100">
         </div>
 
