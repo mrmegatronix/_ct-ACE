@@ -414,13 +414,6 @@
             // Normal rotation: hide the winner announcement slide
             if (slideId === 'slide-winner') return false;
 
-            // Rules/Draw slides only on specific days
-            if (slideId === 'slide-tuesday' && currentDay !== 2) return false;
-            if (slideId === 'slide-saturday' && currentDay !== 6) return false;
-
-            // "How to Win" (Play) only on draw days
-            if (slideId === 'slide-win' && currentDay !== 2 && currentDay !== 6) return false;
-
             // Countdown vs Next Draw logic
             if (slideId === 'countdown-slide' && !isCountdownActive) return false;
             if (slideId === 'next-draw-slide' && isCountdownActive) return false;
