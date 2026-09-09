@@ -92,7 +92,7 @@
             <div class="slide-wrapper">
                 <div class="slide" id="slide-main">
                     <img src="logo.png" alt="Venue Logo" class="venue-logo" onerror="this.style.display='none'">
-                    <h1 id="text-main-title">CHASE THE ACE</h1>
+                    <h1 id="text-main-title">CHASE THE<br><span class="title-spade">♠</span>ACE<span class="title-spade">♠</span></h1>
                     <img src="ace-of-spades.png" alt="Ace of Spades" class="ace-logo" onerror="this.style.display='none'">
                     <h2 id="text-main-subtitle" style="text-align: center; width: 100%;">JOIN US FOR OUR TWO WEEKLY DRAWS</h2>
                 </div>
@@ -479,7 +479,19 @@
             if (storedContent) {
                 const content = JSON.parse(storedContent);
                 
-                const setVal = (id, val) => { const el = document.getElementById(id); if (el && val) el.innerText = val; };
+                const setVal = (id, val) => {
+                    const el = document.getElementById(id);
+                    if (el && val) {
+                        if (id === 'text-main-title') {
+                            if (!val.includes('♠') && val.toUpperCase().includes('ACE')) {
+                                val = val.replace(/ACE/i, '<span class="title-spade">♠</span>ACE<span class="title-spade">♠</span>');
+                            }
+                            el.innerHTML = val.replace(/\n/g, '<br>');
+                        } else {
+                            el.innerText = val;
+                        }
+                    }
+                };
                 const setValRich = (id, val) => { const el = document.getElementById(id); if (el && val) el.innerHTML = val.replace(/\n/g, '<br>'); };
                 const setListVal = (id, val) => {
                     const el = document.getElementById(id);
