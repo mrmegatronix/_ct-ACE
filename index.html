@@ -388,7 +388,8 @@
         }
 
         // --- Configuration ---
-        const slideDuration = 30000; // 30 seconds per slide for better readability
+        let slideDuration = 30000; // 30 seconds per slide for better readability
+        let isLocked = false;
 
         // --- Slideshow Logic ---
         let currentSlide = 0;
@@ -451,7 +452,7 @@
 
         function resetInterval() {
             clearInterval(slideInterval);
-            if (!isPaused) {
+            if (!isPaused && !isLocked) {
                 slideInterval = setInterval(nextSlide, slideDuration);
             }
         }
@@ -860,6 +861,113 @@
             el.style.opacity = Math.random() * 0.5 + 0.3;
             confettiContainer.appendChild(el);
         }
+
+        // Slideshow Keyboard Navigation
+        function showKeyboardHud(text) {
+            let hud = document.getElementById('keyboard-hud-toast');
+            if (!hud) {
+                hud = document.createElement('div');
+                hud.id = 'keyboard-hud-toast';
+                hud.style.cssText = 'position:fixed; bottom:2.5rem; right:2.5rem; z-index:999999; background:rgba(0,0,0,0.85); color:#fbbf24; border:1px solid rgba(251,191,36,0.5); padding:0.6rem 1.4rem; border-radius:9999px; font-family:sans-serif; font-size:1.1rem; font-weight:700; pointer-events:none; box-shadow:0 10px 30px rgba(0,0,0,0.7); backdrop-filter:blur(10px); transition:opacity 0.25s ease, transform 0.25s ease; opacity:0; transform:translateY(10px);';
+                document.body.appendChild(hud);
+            }
+            hud.innerText = text;
+            hud.style.opacity = '1';
+            hud.style.transform = 'translateY(0)';
+            clearTimeout(hud._t);
+            hud._t = setTimeout(() => {
+                hud.style.opacity = '0';
+                hud.style.transform = 'translateY(10px)';
+            }, 2000);
+        }
+
+        window.addEventListener('keydown', (e) => {
+            const target = e.target;
+            if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT' || target.isContentEditable)) {
+                return;
+            }
+
+            switch (e.key) {
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    prevSlide();
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    slides[currentSlide]?.classList.remove('active');
+                    currentSlide = 0;
+                    slides[0]?.classList.add('active');
+                    resetProgressBar();
+                    resetInterval();
+                    showKeyboardHud('⏮ Slide 1');
+                    break;
+                case 'ArrowDown':
+                    e.preventDefault();
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({ type: 'SKIP_MODULE' }, '*');
+                    } else {
+                        nextSlide();
+                    }
+                    break;
+                case ' ':
+                case 'Space':
+                    e.preventDefault();
+                    togglePause();
+                    break;
+                case 'a':
+                case 'A':
+                    e.preventDefault();
+                    window.open('admin.html', '_blank');
+                    break;
+                case 'r':
+                case 'R':
+                    e.preventDefault();
+                    window.open('preview.html', '_blank');
+                    break;
+                case '0':
+                    e.preventDefault();
+                    isLocked = !isLocked;
+                    const bar = document.getElementById('progress-bar');
+                    if (isLocked) {
+                        clearInterval(slideInterval);
+                        if (bar) bar.style.animationPlayState = 'paused';
+                        showKeyboardHud('🔒 SLIDE LOCKED (0 to unlock)');
+                    } else {
+                        showKeyboardHud('🔓 SLIDE UNLOCKED');
+                        if (!isPaused) {
+                            resetProgressBar();
+                            resetInterval();
+                            if (bar) bar.style.animationPlayState = 'running';
+                        }
+                    }
+                    break;
+                default:
+                    if (e.key >= '1' && e.key <= '9') {
+                        e.preventDefault();
+                        const secs = parseInt(e.key, 10) * 10;
+                        slideDuration = secs * 1000;
+                        resetProgressBar();
+                        resetInterval();
+                        showKeyboardHud(`⏱ Duration: ${secs}s`);
+                    }
+                    break;
+            }
+        });
+
+        window.addEventListener('message', (e) => {
+            if (!e.data) return;
+            if (e.data.type === 'GOTO_FIRST') {
+                slides[currentSlide]?.classList.remove('active');
+                currentSlide = 0;
+                slides[0]?.classList.add('active');
+                resetProgressBar();
+                resetInterval();
+            }
+        });
     </script>
 
 </body>
