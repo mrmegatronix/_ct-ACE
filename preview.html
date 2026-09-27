@@ -607,11 +607,11 @@
             const subtitleEl = document.getElementById('text-main-subtitle');
             if (subtitleEl) {
                 if (isPaused) {
-                    subtitleEl.innerText = "GAMEPLAY TEMPORARILY ON HOLD";
+                    subtitleEl.innerHTML = "GAME PLAY IS CURRENTLY PAUSED AND WILL RESET IN A FEW WEEKS<br>BUILDING BACK TO $500!";
                 } else {
                     const storedContent = localStorage.getItem('cta_slide_content');
                     const content = storedContent ? JSON.parse(storedContent) : null;
-                    subtitleEl.innerText = (content && content['main-subtitle']) ? content['main-subtitle'] : "JOIN US FOR OUR TWO WEEKLY DRAWS";
+                    subtitleEl.innerHTML = (content && content['main-subtitle']) ? content['main-subtitle'] : "JOIN US FOR OUR TWO WEEKLY DRAWS";
                 }
             }
 
@@ -648,14 +648,35 @@
             }
 
             // Sync Safe Vault Card Deck Countdown
-            const totalCards = 52;
-            const storedCards = localStorage.getItem('cta_cards_remaining') || 36;
-            let remaining = Math.max(1, Math.min(totalCards, parseInt(storedCards) || 36));
-            let flipped = totalCards - remaining;
+            const storedRemaining = localStorage.getItem('cta_cards_remaining');
+            const storedFlipped = localStorage.getItem('cta_cards_flipped');
+            const storedChance = localStorage.getItem('cta_winning_chance') || '1.92%';
+            
+            let remaining = storedRemaining !== null ? parseInt(storedRemaining) : 36;
+            let flipped = storedFlipped !== null ? parseInt(storedFlipped) : 16;
+            let chance = storedChance;
 
             if (isPaused) {
                 remaining = 0;
-                flipped = 0;
+            }
+
+            // Hide the Tuesday, Saturday, and How to Win slides from the preview grid when paused
+            if (isPaused) {
+                const hideSlides = ['slide-tuesday', 'slide-saturday', 'slide-win'];
+                hideSlides.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el && el.parentElement && el.parentElement.parentElement) {
+                        el.parentElement.parentElement.style.display = 'none';
+                    }
+                });
+            } else {
+                const showSlides = ['slide-tuesday', 'slide-saturday', 'slide-win'];
+                showSlides.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el && el.parentElement && el.parentElement.parentElement) {
+                        el.parentElement.parentElement.style.display = 'block';
+                    }
+                });
             }
 
             const remainingEl = document.getElementById('vault-remaining-num');
@@ -665,8 +686,8 @@
             const fannedBot = document.getElementById('card-fanned-flipped-bot');
 
             if (remainingEl) remainingEl.innerText = remaining;
-            if (flippedEl) flippedEl.innerText = isPaused ? '0 CARDS' : `${flipped} CARDS`;
-            if (oddsEl) oddsEl.innerText = isPaused ? 'PAUSED' : `1 IN ${remaining}`;
+            if (flippedEl) flippedEl.innerText = `${flipped} CARDS`;
+            if (oddsEl) oddsEl.innerText = chance === '0.00%' ? '0.00%' : chance;
             if (fannedTop) fannedTop.innerText = isPaused ? '-' : `#${flipped}`;
             if (fannedBot) fannedBot.innerText = isPaused ? '-' : `#${flipped}`;
         }
