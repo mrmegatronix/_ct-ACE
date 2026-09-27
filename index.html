@@ -479,8 +479,8 @@
             const slideId = slide.id;
 
             if (isGameplayPaused) {
-                // When gameplay is paused, show main, jackpot, winner, and hall of winners
-                return slideId === 'slide-main' || slideId === 'slide-jackpot' || slideId === 'slide-winner' || slideId === 'slide-hall-of-winners';
+                // Show main, jackpot, next-draw, winner, and hall of winners. Skip "countdown-slide" (draw starts in) because there is no draw imminent.
+                return slideId === 'slide-main' || slideId === 'slide-jackpot' || slideId === 'next-draw-slide' || slideId === 'slide-winner' || slideId === 'slide-hall-of-winners';
             }
 
             // Normal rotation: hide the winner announcement slide
@@ -690,6 +690,15 @@
 
         // --- Countdown Logic (NZ Time) ---
         function updateCountdown() {
+            if (isGameplayPaused) {
+                isCountdownActive = false;
+                document.getElementById('cd-d').innerText = '00';
+                document.getElementById('cd-h').innerText = '00';
+                document.getElementById('cd-m').innerText = '00';
+                document.getElementById('cd-s').innerText = '00';
+                return;
+            }
+
             const now = new Date();
             // Create date object based on NZ time
             const nzTimeStr = now.toLocaleString("en-US", { timeZone: "Pacific/Auckland" });
@@ -738,6 +747,17 @@
         // --- Rule Page Timers (Tuesday/Saturday specific) ---
         // --- Global Next Draw Countdown Logic ---
         function updateNextDrawTimer() {
+            const pad = (n) => n < 10 ? '0' + n : n;
+            
+            if (isGameplayPaused) {
+                document.getElementById('nd-d').innerText = '00';
+                document.getElementById('nd-h').innerText = '00';
+                document.getElementById('nd-m').innerText = '00';
+                document.getElementById('nd-s').innerText = '00';
+                document.getElementById('next-draw-label').innerText = "PAUSED UNTIL JACKPOT HITS $500";
+                return;
+            }
+
             const now = new Date();
             const nzTimeStr = now.toLocaleString("en-US", { timeZone: "Pacific/Auckland" });
             const nzDate = new Date(nzTimeStr);
