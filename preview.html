@@ -90,458 +90,317 @@
         <div>
             <div class="slide-title-bar">Main Title & Logo</div>
             <div class="slide-wrapper">
-                <div class="slide slide-fullscreen active" id="slide-main">
-            <div class="signage-card-gold box-glow-gold" style="align-items: center; justify-content: center; text-align: center; gap: 40px;">
-                <img src="logo.png" alt="Venue Logo" class="venue-logo" style="width: 250px; height: auto; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));" onerror="this.style.display='none'">
-                <h1 id="text-main-title" class="font-headline glow-gold" style="font-size: 160px; line-height: 0.9; color: #ffffff; margin: 0; letter-spacing: 2px; text-transform: uppercase;">
+                
+        <!-- Slide 1: Main Title -->
+        <div class="slide slide-fullscreen active" id="slide-main">
+            <div class="signage-card-gold box-glow-gold" style="align-items: center; justify-content: center; text-align: center; gap: 50px;">
+                <img src="logo.png" alt="Venue Logo" class="venue-logo" style="width: 280px; height: auto; animation: pulseGlow 4s infinite;" onerror="this.style.display='none'">
+                <h1 id="text-main-title" class="font-headline glow-gold" style="font-size: 180px; line-height: 0.9; color: #ffffff; margin: 0; letter-spacing: 2px; text-transform: uppercase; white-space: nowrap;">
                     CHASE THE<br><span class="title-spade" style="color: #d4af37;">♠</span>ACE<span class="title-spade" style="color: #d4af37;">♠</span>
                 </h1>
-                <img src="ace-of-spades.png" alt="Ace of Spades" class="ace-logo" style="height: 280px; filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.3));" onerror="this.style.display='none'">
-                <h2 id="text-main-subtitle" style="font-size: 52px; font-weight: 800; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; font-family: 'Playfair Display', serif; margin-top: 20px; white-space: pre-line;">GAME PLAY IS CURRENTLY PAUSED AND WILL RESET IN A FEW WEEKS<br>BUILDING BACK TO $500!</h2>
-            </div>
-        </div>
+                <img src="ace-of-spades.png" alt="Ace of Spades" class="ace-logo" style="height: 320px; filter: drop-shadow(0 0 40px rgba(245, 158, 11, 0.4));" onerror="this.style.display='none'">
+                <h2 id="text-main-subtitle" style="font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 900; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; margin-top: 20px; white-space: nowrap; line-height: 1.2;">
+                    GAME PLAY IS CURRENTLY PAUSED AND WILL RESET IN A FEW WEEKS<br>BUILDING BACK TO $500!
+                </h2>
             </div>
         </div>
 
-        <!-- Slide 2 -->
-        <div>
-            <div class="slide-title-bar">Current Jackpot</div>
-            <div class="slide-wrapper">
-                <div class="slide slide-fullscreen" id="slide-jackpot">
+        <!-- Slide 2: Current Jackpot -->
+        <div class="slide slide-fullscreen" id="slide-jackpot">
             <div class="signage-card-gold box-glow-gold" style="align-items: center; justify-content: center; text-align: center;">
-                <div style="width: 140px; height: 140px; border-radius: 30px; background: rgba(212, 175, 55, 0.15); border: 3px solid rgba(212, 175, 55, 0.45); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 35px rgba(212, 175, 55, 0.2); margin-bottom: 40px;">
-                    <span class="material-symbols-outlined" style="font-size: 96px; color: #d4af37;">attach_money</span>
+                <div class="header-icon-box" style="margin-bottom: 40px; animation: pulseGlow 3s infinite;">
+                    <span class="material-symbols-outlined">attach_money</span>
                 </div>
-                <h2 class="font-headline" style="font-size: 90px; color: #ffffff; text-transform: uppercase; letter-spacing: 3px; margin: 0;">CURRENT JACKPOT</h2>
-                <div class="jackpot-amount glow-gold" id="display-jackpot" style="font-family: 'Playfair Display', serif; font-size: 260px; font-weight: 900; color: #d4af37; line-height: 1; margin: 20px 0;">
+                <h2 class="text-title" style="font-size: 100px; margin-bottom: 10px;">CURRENT JACKPOT</h2>
+                <div class="jackpot-amount glow-gold" id="display-jackpot" style="font-family: 'Playfair Display', serif; font-size: 300px; font-weight: 900; color: #d4af37; line-height: 1; margin: 20px 0; white-space: nowrap;">
                     $0.00
                 </div>
-                <div class="countdown-label" id="text-jackpot-footer" style="font-size: 54px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px; margin-top: 40px;">
+                <div class="text-subtitle" id="text-jackpot-footer" style="font-size: 46px; color: #94a3b8; margin-top: 50px; white-space: nowrap; line-height: 1.3;">
                     Jackpot increases by $100 after every draw!
                 </div>
             </div>
         </div>
-            </div>
-        </div>
 
-        <!-- Slide 3 -->
-        <div>
-            <div class="slide-title-bar">Active Countdown</div>
-            <div class="slide-wrapper">
-                <div class="slide slide-fullscreen" id="countdown-slide">
+        <!-- Slide: Countdown -->
+        <div class="slide slide-fullscreen" id="countdown-slide">
             <div class="signage-card-amber box-glow-amber" style="align-items: center; justify-content: center; text-align: center;">
-                <h2 class="font-headline" style="font-size: 90px; color: #ffffff; text-transform: uppercase; letter-spacing: 3px; margin: 0;">DRAW STARTS IN</h2>
-                <div class="countdown-timer glow-amber" id="timer-display" style="display: flex; gap: 20px; font-family: 'Playfair Display', serif; font-size: 200px; font-weight: 900; color: #f59e0b; margin: 40px 0; align-items: baseline; justify-content: center;">
-                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="cd-d">♠♠</span><small style="font-family: 'Outfit', sans-serif; font-size: 48px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">DAYS</small></div>
-                    <span class="blink-colon">:</span>
-                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="cd-h">♠♠</span><small style="font-family: 'Outfit', sans-serif; font-size: 48px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">HOURS</small></div>
-                    <span class="blink-colon">:</span>
-                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="cd-m">♠♠</span><small style="font-family: 'Outfit', sans-serif; font-size: 48px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">MINUTES</small></div>
-                    <span class="blink-colon">:</span>
-                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="cd-s">♠♠</span><small style="font-family: 'Outfit', sans-serif; font-size: 48px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">SECONDS</small></div>
+                <h2 class="text-title" style="font-size: 110px; color: #ffffff; margin-bottom: 20px;">DRAW STARTS IN</h2>
+                <div class="countdown-timer glow-amber" id="timer-display" style="display: flex; gap: 30px; font-family: 'Playfair Display', serif; font-size: 220px; font-weight: 900; color: #f59e0b; margin: 50px 0; align-items: baseline; justify-content: center; white-space: nowrap;">
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="cd-d">00</span><small style="font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: 4px; color: #94a3b8; margin-top: 15px;">DAYS</small></div>
+                    <div style="color: #f59e0b; opacity: 0.6; transform: translateY(-30px);" class="blink-colon">:</div>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="cd-h">00</span><small style="font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: 4px; color: #94a3b8; margin-top: 15px;">HRS</small></div>
+                    <div style="color: #f59e0b; opacity: 0.6; transform: translateY(-30px);" class="blink-colon">:</div>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="cd-m">00</span><small style="font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: 4px; color: #94a3b8; margin-top: 15px;">MIN</small></div>
+                    <div style="color: #f59e0b; opacity: 0.6; transform: translateY(-30px);" class="blink-colon">:</div>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="cd-s">00</span><small style="font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: 4px; color: #94a3b8; margin-top: 15px;">SEC</small></div>
                 </div>
-                <div class="countdown-label" style="background: rgba(245, 158, 11, 0.18); border: 3px solid #f59e0b; color: #f59e0b; font-size: 66px; font-weight: 900; padding: 20px 50px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 2px; margin-top: 40px;">
-                    GET YOUR TICKETS NOW!
+                <div class="text-subtitle text-subtitle-amber" style="font-size: 46px; margin-top: 40px;" id="text-countdown-footer">
+                    GET YOUR TICKETS READY!
                 </div>
-            </div>
-        </div>
             </div>
         </div>
 
-        <!-- Slide 4 -->
-        <div>
-            <div class="slide-title-bar">Next Draw</div>
-            <div class="slide-wrapper">
-                <div class="slide slide-fullscreen" id="next-draw-slide">
+        <!-- Slide: Next Draw Timer -->
+        <div class="slide slide-fullscreen" id="next-draw-slide">
             <div class="signage-card-gold box-glow-gold" style="align-items: center; justify-content: center; text-align: center;">
-                <h2 class="font-headline" style="font-size: 90px; color: #ffffff; text-transform: uppercase; letter-spacing: 3px; margin: 0;">NEXT DRAW</h2>
-                <div class="countdown-timer glow-gold" id="next-draw-timer" style="display: flex; gap: 20px; font-family: 'Playfair Display', serif; font-size: 200px; font-weight: 900; color: #d4af37; margin: 40px 0; align-items: baseline; justify-content: center;">
-                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="nd-d">♠♠</span><small style="font-family: 'Outfit', sans-serif; font-size: 48px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">DAYS</small></div>
-                    <span class="blink-colon">:</span>
-                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="nd-h">♠♠</span><small style="font-family: 'Outfit', sans-serif; font-size: 48px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">HOURS</small></div>
-                    <span class="blink-colon">:</span>
-                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="nd-m">♠♠</span><small style="font-family: 'Outfit', sans-serif; font-size: 48px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">MINUTES</small></div>
-                    <span class="blink-colon">:</span>
-                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="nd-s">♠♠</span><small style="font-family: 'Outfit', sans-serif; font-size: 48px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">SECONDS</small></div>
+                <h2 class="text-title" style="font-size: 110px; margin-bottom: 20px;" id="next-draw-label">NEXT DRAW IN</h2>
+                <div class="countdown-timer glow-gold" id="next-timer-display" style="display: flex; gap: 30px; font-family: 'Playfair Display', serif; font-size: 220px; font-weight: 900; color: #d4af37; margin: 50px 0; align-items: baseline; justify-content: center; white-space: nowrap;">
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="nd-d">00</span><small style="font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: 4px; color: #94a3b8; margin-top: 15px;">DAYS</small></div>
+                    <div style="color: #d4af37; opacity: 0.6; transform: translateY(-30px);" class="blink-colon">:</div>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="nd-h">00</span><small style="font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: 4px; color: #94a3b8; margin-top: 15px;">HRS</small></div>
+                    <div style="color: #d4af37; opacity: 0.6; transform: translateY(-30px);" class="blink-colon">:</div>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="nd-m">00</span><small style="font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: 4px; color: #94a3b8; margin-top: 15px;">MIN</small></div>
+                    <div style="color: #d4af37; opacity: 0.6; transform: translateY(-30px);" class="blink-colon">:</div>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="nd-s">00</span><small style="font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: 4px; color: #94a3b8; margin-top: 15px;">SEC</small></div>
                 </div>
-                <h2 id="next-draw-label" style="font-size: 54px; font-weight: 700; color: #cbd5e1; text-transform: uppercase; letter-spacing: 2px; margin-top: 40px;">
-                    LOADING...
-                </h2>
-            </div>
-        </div>
-            </div>
-        </div>
-
-        <!-- Slide 5 -->
-        <div>
-            <div class="slide-title-bar">Tuesday Draw</div>
-            <div class="slide-wrapper">
-                <div class="slide slide-fullscreen" id="slide-tuesday">
-                    <div class="signage-card-gold box-glow-gold">
-                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #d4af37, #f59e0b, #d4af37, transparent);"></div>
-                        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid rgba(212, 175, 55, 0.25); padding-bottom: 26px;">
-                            <div style="display: flex; align-items: center; gap: 26px;">
-                                <div style="width: 104px; height: 104px; border-radius: 24px; background: rgba(212, 175, 55, 0.15); border: 2.5px solid rgba(212, 175, 55, 0.45); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);">
-                                    <span class="material-symbols-outlined" style="font-size: 86px; color: #d4af37;">calendar_month</span>
-                                </div>
-                                <div>
-                                    <h2 class="font-headline" style="font-size: 104px; line-height: 0.95; letter-spacing: 2px; color: #ffffff; text-transform: uppercase; margin: 0;">TUESDAY DRAW</h2>
-                                    <div style="font-size: 44px; font-weight: 800; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; font-family: 'Playfair Display', serif; margin-top: 6px;" class="font-headline">COASTERS TAVERN WEEKLY EVENT</div>
-                                </div>
-                            </div>
-                            <div class="time-badge-gold glow-gold" id="text-tue-time">
-                                5<span class="blink-colon">:</span>30 PM
-                            </div>
-                        </div>
-                        <div style="display: flex; flex-direction: column; gap: 28px; margin: auto 0; padding: 20px 0;">
-                            <div class="signage-row">
-                                <div style="width: 84px; height: 84px; border-radius: 20px; background: rgba(245, 158, 11, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                    <span class="material-symbols-outlined" style="font-size: 72px; color: #f59e0b;">schedule</span>
-                                </div>
-                                <div style="display: flex; align-items: baseline; gap: 18px; white-space: nowrap;">
-                                    <span style="font-size: 58px; font-weight: 600; color: #cbd5e1;">Beverage Window:</span>
-                                    <span class="glow-gold font-headline" style="font-size: 68px; font-weight: 900; color: #ffffff; letter-spacing: 1px;">
-                                        3<span class="blink-colon">:</span>00 PM – 5<span class="blink-colon">:</span>30 PM
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="signage-row">
-                                <div style="width: 84px; height: 84px; border-radius: 20px; background: rgba(212, 175, 55, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                    <span class="material-symbols-outlined" style="font-size: 72px; color: #d4af37;">confirmation_number</span>
-                                </div>
-                                <span style="font-size: 58px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; white-space: nowrap;">
-                                    1 Ticket with every beverage purchased
-                                </span>
-                            </div>
-                            <div class="signage-row-cta-gold">
-                                <div style="width: 84px; height: 84px; border-radius: 20px; background: rgba(212, 175, 55, 0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                    <span class="material-symbols-outlined" style="font-size: 76px; color: #d4af37; font-variation-settings: 'FILL' 1;">verified</span>
-                                </div>
-                                <span class="glow-gold" style="font-size: 62px; font-weight: 900; color: #d4af37; letter-spacing: 1px; white-space: nowrap;">
-                                    Must be in venue for draw to win!
-                                </span>
-                            </div>
-                        </div>
-                        <div style="padding-top: 22px; border-top: 2px solid rgba(212, 175, 55, 0.2); display: flex; justify-content: space-between; align-items: center; font-size: 40px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">
-                            <div style="display: flex; align-items: center; gap: 16px; color: #d4af37;">
-                                <span class="live-dot-gold"></span>
-                                WEEKLY TUESDAY EVENT
-                            </div>
-                            <div style="color: #94a3b8; font-weight: 700; letter-spacing: 3px; white-space: nowrap;">
-                                DRAWN LIVE AT 5<span class="blink-colon">:</span>30 PM
-                            </div>
-                        </div>
-                    </div>
+                <div class="text-subtitle" style="font-size: 46px; margin-top: 40px;">
+                    BE AT THE VENUE TO WIN!
                 </div>
             </div>
         </div>
 
-        <!-- Slide 6 -->
-        <div>
-            <div class="slide-title-bar">Saturday Draw</div>
-            <div class="slide-wrapper">
-                <div class="slide slide-fullscreen" id="slide-saturday">
-                    <div class="signage-card-amber box-glow-amber">
-                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #f59e0b, #d4af37, #f59e0b, transparent);"></div>
-                        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid rgba(245, 158, 11, 0.25); padding-bottom: 26px;">
-                            <div style="display: flex; align-items: center; gap: 26px;">
-                                <div style="width: 104px; height: 104px; border-radius: 24px; background: rgba(245, 158, 11, 0.15); border: 2.5px solid rgba(245, 158, 11, 0.45); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(245, 158, 11, 0.2);">
-                                    <span class="material-symbols-outlined" style="font-size: 86px; color: #f59e0b;">event_available</span>
-                                </div>
-                                <div>
-                                    <h2 class="font-headline" style="font-size: 104px; line-height: 0.95; letter-spacing: 2px; color: #ffffff; text-transform: uppercase; margin: 0;">SATURDAY DRAW</h2>
-                                    <div style="font-size: 44px; font-weight: 800; color: #f59e0b; letter-spacing: 4px; text-transform: uppercase; margin-top: 6px;">WEEKEND SHOWDOWN SPECTACULAR</div>
-                                </div>
-                            </div>
-                            <div class="time-badge-amber glow-amber" id="text-sat-time">
-                                6<span class="blink-colon">:</span>30 PM
-                            </div>
-                        </div>
-                        <div style="display: flex; flex-direction: column; gap: 28px; margin: auto 0; padding: 20px 0;">
-                            <div class="signage-row">
-                                <div style="width: 84px; height: 84px; border-radius: 20px; background: rgba(245, 158, 11, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                    <span class="material-symbols-outlined" style="font-size: 72px; color: #f59e0b;">schedule</span>
-                                </div>
-                                <div style="display: flex; align-items: baseline; gap: 18px; white-space: nowrap;">
-                                    <span style="font-size: 58px; font-weight: 600; color: #cbd5e1;">Beverage Window:</span>
-                                    <span class="glow-amber font-headline" style="font-size: 68px; font-weight: 900; color: #ffffff; letter-spacing: 1px;">
-                                        3<span class="blink-colon">:</span>00 PM – 6<span class="blink-colon">:</span>30 PM
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="signage-row">
-                                <div style="width: 84px; height: 84px; border-radius: 20px; background: rgba(245, 158, 11, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                    <span class="material-symbols-outlined" style="font-size: 72px; color: #f59e0b;">confirmation_number</span>
-                                </div>
-                                <span style="font-size: 58px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; white-space: nowrap;">
-                                    1 Ticket with every beverage purchased
-                                </span>
-                            </div>
-                            <div class="signage-row-cta-amber">
-                                <div style="width: 84px; height: 84px; border-radius: 20px; background: rgba(245, 158, 11, 0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                    <span class="material-symbols-outlined" style="font-size: 76px; color: #f59e0b; font-variation-settings: 'FILL' 1;">verified</span>
-                                </div>
-                                <span class="glow-amber" style="font-size: 62px; font-weight: 900; color: #f59e0b; letter-spacing: 1px; white-space: nowrap;">
-                                    Must be in venue for draw to win!
-                                </span>
-                            </div>
-                        </div>
-                        <div style="padding-top: 22px; border-top: 2px solid rgba(245, 158, 11, 0.2); display: flex; justify-content: space-between; align-items: center; font-size: 40px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">
-                            <div style="display: flex; align-items: center; gap: 16px; color: #f59e0b;">
-                                <span class="live-dot-amber"></span>
-                                WEEKLY SATURDAY EVENT
-                            </div>
-                            <div style="color: #94a3b8; font-weight: 700; letter-spacing: 3px; white-space: nowrap;">
-                                DRAWN LIVE AT 6<span class="blink-colon">:</span>30 PM
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 7 -->
-        <div>
-            <div class="slide-title-bar">How To Win</div>
-            <div class="slide-wrapper">
-                <div class="slide slide-fullscreen" id="slide-win">
-                    <div class="signage-card-gold box-glow-gold">
-                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #d4af37, #f59e0b, #d4af37, transparent);"></div>
-                        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid rgba(212, 175, 55, 0.25); padding-bottom: 26px;">
-                            <div style="display: flex; align-items: center; gap: 26px;">
-                                <div style="width: 104px; height: 104px; border-radius: 24px; background: rgba(212, 175, 55, 0.15); border: 2.5px solid rgba(212, 175, 55, 0.45); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);">
-                                    <span class="material-symbols-outlined" style="font-size: 86px; color: #d4af37;">help</span>
-                                </div>
-                                <div>
-                                    <h2 class="font-headline" style="font-size: 98px; line-height: 0.95; letter-spacing: 2px; color: #ffffff; text-transform: uppercase; white-space: nowrap; margin: 0;">HOW TO WIN - 3 SIMPLE STEPS</h2>
-                                    <div style="font-size: 44px; font-weight: 800; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; font-family: 'Playfair Display', serif; margin-top: 6px;" class="font-headline">YOUR PATHWAY TO THE JACKPOT</div>
-                                </div>
-                            </div>
-                            <div style="background: #151924; border: 2.5px solid #d4af37; color: #d4af37; font-size: 40px; font-weight: 800; padding: 16px 36px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 0 25px rgba(212, 175, 55, 0.25); white-space: nowrap;">
-                                If your ticket is pulled from barrel:
-                            </div>
-                        </div>
-                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin: auto 0; padding: 15px 0;">
-                            <div style="background: rgba(6, 8, 13, 0.88); border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 26px; padding: 38px 34px; display: flex; flex-direction: column; justify-content: space-between; height: 460px; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);">
-                                <div style="display: flex; align-items: center; justify-content: space-between;">
-                                    <span class="font-headline glow-gold" style="font-size: 114px; color: #d4af37; line-height: 0.85;">01</span>
-                                    <div style="width: 88px; height: 88px; border-radius: 22px; background: rgba(212, 175, 55, 0.15); border: 1.5px solid rgba(212, 175, 55, 0.35); display: flex; align-items: center; justify-content: center;">
-                                        <span class="material-symbols-outlined" style="font-size: 72px; color: #d4af37;">lock_open</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-headline" style="font-size: 76px; letter-spacing: 2px; color: #ffffff; text-transform: uppercase; line-height: 1; white-space: nowrap;">PICK A CARD</div>
-                                    <p style="font-size: 46px; color: #94a3b8; margin-top: 16px; font-weight: 600; line-height: 1.4;">From the card vault<br><strong style="color: #ffffff;">(52 cards total)</strong></p>
-                                </div>
-                            </div>
-                            <div class="box-glow-amber" style="background: rgba(6, 8, 13, 0.88); border: 2.5px solid rgba(245, 158, 11, 0.8); border-radius: 26px; padding: 38px 34px; display: flex; flex-direction: column; justify-content: space-between; height: 460px; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);">
-                                <div style="display: flex; align-items: center; justify-content: space-between;">
-                                    <span class="font-headline glow-amber" style="font-size: 114px; color: #f59e0b; line-height: 0.85;">02</span>
-                                    <div style="width: 88px; height: 88px; border-radius: 22px; background: rgba(245, 158, 11, 0.15); border: 1.5px solid rgba(245, 158, 11, 0.45); display: flex; align-items: center; justify-content: center;">
-                                        <span class="material-symbols-outlined" style="font-size: 72px; color: #f59e0b;">style</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-headline glow-amber" style="font-size: 76px; letter-spacing: 2px; color: #f59e0b; text-transform: uppercase; line-height: 1; white-space: nowrap;">FLIP THE ACE</div>
-                                    <p style="font-size: 46px; color: #e2e8f0; margin-top: 16px; font-weight: 600; line-height: 1.4;">Reveal the lucky<br><strong style="color: #f59e0b;">Ace of Spades</strong></p>
-                                </div>
-                            </div>
-                            <div class="box-glow-gold" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.28) 0%, rgba(6, 8, 13, 0.95) 60%, rgba(245, 158, 11, 0.2) 100%); border: 3px solid #d4af37; border-radius: 26px; padding: 38px 34px; display: flex; flex-direction: column; justify-content: space-between; height: 460px; box-shadow: 0 25px 50px rgba(212, 175, 55, 0.3);">
-                                <div style="display: flex; align-items: center; justify-content: space-between;">
-                                    <span class="font-headline glow-gold" style="font-size: 114px; color: #d4af37; line-height: 0.85;">03</span>
-                                    <div style="width: 88px; height: 88px; border-radius: 22px; background: rgba(212, 175, 55, 0.3); border: 2px solid #d4af37; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);">
-                                        <span class="material-symbols-outlined glow-gold" style="font-size: 72px; color: #d4af37; font-variation-settings: 'FILL' 1;">trophy</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-headline glow-gold" style="font-size: 76px; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; line-height: 1; white-space: nowrap;">WIN JACKPOT!</div>
-                                    <p style="font-size: 46px; color: #fef08a; margin-top: 16px; font-weight: 700; line-height: 1.4;">Take home the entire<br><strong style="color: #ffffff;">accumulated cash prize!</strong></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="padding-top: 22px; border-top: 2px solid rgba(212, 175, 55, 0.2); display: flex; justify-content: space-between; align-items: center; font-size: 40px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #94a3b8;">
-                            <span style="letter-spacing: 3px; white-space: nowrap;">TICKETS ACCUMULATED DURING BEVERAGE HOURS</span>
-                            <span style="color: #d4af37; font-weight: 900; white-space: nowrap;">ONE PRIZE DRAW EACH SESSION</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide: The Card Vault -->
-        <div>
-            <div class="slide-title-bar">The Card Vault (Live Inventory)</div>
-            <div class="slide-wrapper">
-                <div class="slide slide-fullscreen" id="slide-vault">
-                    <div class="signage-card-gold box-glow-gold">
-                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #d4af37, #f59e0b, #d4af37, transparent);"></div>
-                        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid rgba(212, 175, 55, 0.25); padding-bottom: 26px;">
-                            <div style="display: flex; align-items: center; gap: 26px;">
-                                <div style="width: 104px; height: 104px; border-radius: 24px; background: rgba(212, 175, 55, 0.15); border: 2.5px solid rgba(212, 175, 55, 0.45); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);">
-                                    <span class="material-symbols-outlined" style="font-size: 86px; color: #d4af37; font-variation-settings: 'FILL' 1;">lock</span>
-                                </div>
-                                <div>
-                                    <h2 class="font-headline" style="font-size: 104px; line-height: 0.95; letter-spacing: 2px; color: #ffffff; text-transform: uppercase; white-space: nowrap; margin: 0;">THE CARD VAULT</h2>
-                                    <div style="font-size: 44px; font-weight: 800; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; font-family: 'Playfair Display', serif; margin-top: 6px;" class="font-headline">LIVE REAL-TIME CARD DECK INVENTORY</div>
-                                </div>
-                            </div>
-                            <div class="glow-gold font-headline" style="background: rgba(212, 175, 55, 0.18); border: 3px solid #d4af37; color: #d4af37; font-size: 66px; line-height: 1; padding: 16px 40px; border-radius: 9999px; font-weight: 900; box-shadow: 0 0 35px rgba(212, 175, 55, 0.45); white-space: nowrap;">
-                                ODDS OF ACE: <span id="vault-odds-display">1 IN 36</span>
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: center; justify-content: space-between; gap: 60px; margin: auto 0; padding: 15px 10px;">
-                            <div style="position: relative; width: 420px; height: 450px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                <div style="position: absolute; width: 230px; height: 340px; background: #11141d; border-radius: 22px; border: 2px solid rgba(212, 175, 55, 0.35); transform: rotate(-14deg) translateX(-45px); opacity: 0.55; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);">
-                                    <div class="font-headline" style="font-size: 66px; color: rgba(212, 175, 55, 0.8); font-weight: bold; line-height: 0.9;">52</div>
-                                    <div class="font-headline" style="text-align: center; font-size: 46px; color: #94a3b8; letter-spacing: 2px;">TOTAL</div>
-                                    <div class="font-headline" style="font-size: 66px; color: rgba(212, 175, 55, 0.8); font-weight: bold; line-height: 0.9; text-align: right; transform: rotate(180deg);">52</div>
-                                </div>
-                                <div style="position: absolute; width: 230px; height: 340px; background: #11141d; border-radius: 22px; border: 2.5px solid rgba(245, 158, 11, 0.5); transform: rotate(14deg) translateX(45px); opacity: 0.65; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);">
-                                    <div class="font-headline" style="font-size: 66px; color: #f59e0b; font-weight: bold; line-height: 0.9;" id="card-fanned-flipped-top">#16</div>
-                                    <div class="font-headline" style="text-align: center; font-size: 46px; color: #f59e0b; letter-spacing: 2px;">MISSED</div>
-                                    <div class="font-headline" style="font-size: 66px; color: #f59e0b; font-weight: bold; line-height: 0.9; text-align: right; transform: rotate(180deg);" id="card-fanned-flipped-bot">#16</div>
-                                </div>
-                                <div class="box-glow-gold" style="position: relative; z-index: 20; width: 270px; height: 390px; background: linear-gradient(180deg, #181c28 0%, #080a0f 100%); border: 3.5px solid #d4af37; border-radius: 24px; display: flex; flex-direction: column; justify-content: space-between; padding: 22px; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(212, 175, 55, 0.35);">
-                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; line-height: 0.9;">
-                                        <span class="font-headline glow-gold" style="font-size: 94px; font-weight: 900; color: #d4af37;">A</span>
-                                        <span style="font-size: 58px; color: #d4af37;">♠</span>
-                                    </div>
-                                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: auto 0;">
-                                        <img src="coasters-new-600-1.png" alt="Coasters Tavern" style="width: 124px; height: 124px; object-fit: contain; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));" onerror="this.style.display='none'; document.getElementById('card-fallback-icon').style.display='block';">
-                                        <span id="card-fallback-icon" class="material-symbols-outlined glow-gold" style="display: none; font-size: 90px; color: #d4af37; font-variation-settings: 'FILL' 1;">eco</span>
-                                        <span style="font-size: 32px; font-weight: 900; color: #d4af37; letter-spacing: 5px; margin-top: 10px; white-space: nowrap;">COASTERS</span>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; align-items: flex-end; line-height: 0.9; transform: rotate(180deg);">
-                                        <span class="font-headline glow-gold" style="font-size: 94px; font-weight: 900; color: #d4af37;">A</span>
-                                        <span style="font-size: 58px; color: #d4af37;">♠</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: column; justify-content: center; flex: 1; gap: 34px;">
-                                <div style="display: flex; align-items: baseline; gap: 30px; line-height: 0.9;">
-                                    <span class="font-headline glow-gold" style="font-size: 240px; color: #d4af37; font-weight: 900; letter-spacing: -4px;" id="vault-remaining-num">36</span>
-                                    <div style="display: flex; flex-direction: column;">
-                                        <span class="font-headline" style="font-size: 98px; color: #ffffff; font-weight: bold; letter-spacing: 3px; text-transform: uppercase; line-height: 0.95; white-space: nowrap;">CARDS REMAINING</span>
-                                        <span style="font-size: 48px; color: #94a3b8; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-top: 14px;">LOCKED IN THE CARD VAULT</span>
-                                    </div>
-                                </div>
-                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;">
-                                    <div style="background: rgba(6, 8, 13, 0.88); padding: 26px 32px; border-radius: 22px; border: 2px solid rgba(245, 158, 11, 0.5); display: flex; align-items: center; gap: 24px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);">
-                                        <div style="width: 78px; height: 78px; border-radius: 20px; background: rgba(245, 158, 11, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                            <span class="material-symbols-outlined" style="font-size: 66px; color: #f59e0b;">history_edu</span>
-                                        </div>
-                                        <div>
-                                            <div class="font-headline glow-amber" style="font-size: 68px; color: #f59e0b; line-height: 1; white-space: nowrap;" id="vault-flipped-num">16 CARDS</div>
-                                            <div style="font-size: 36px; font-weight: 700; color: #94a3b8; letter-spacing: 2px; text-transform: uppercase; margin-top: 6px;">FLIPPED (MISSED)</div>
-                                        </div>
-                                    </div>
-                                    <div style="background: rgba(6, 8, 13, 0.88); padding: 26px 32px; border-radius: 22px; border: 2px solid rgba(212, 175, 55, 0.4); display: flex; align-items: center; gap: 24px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);">
-                                        <div style="width: 78px; height: 78px; border-radius: 20px; background: rgba(212, 175, 55, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                            <span class="material-symbols-outlined" style="font-size: 66px; color: #d4af37;">pin</span>
-                                        </div>
-                                        <div>
-                                            <div class="font-headline glow-gold" style="font-size: 68px; color: #ffffff; line-height: 1; white-space: nowrap;">52 CARDS</div>
-                                            <div style="font-size: 36px; font-weight: 700; color: #94a3b8; letter-spacing: 2px; text-transform: uppercase; margin-top: 6px;">STARTING DECK SIZE</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="padding-top: 22px; border-top: 2px solid rgba(212, 175, 55, 0.2); display: flex; justify-content: space-between; align-items: center; font-size: 40px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #94a3b8;">
-                            <div style="display: flex; align-items: center; gap: 16px; color: #d4af37;">
-                                <span class="live-dot-gold"></span>
-                                LIVE CARD INVENTORY
-                            </div>
-                            <div style="color: #f59e0b; font-weight: 900; letter-spacing: 3px; white-space: nowrap;">
-                                UPDATED AFTER EACH DRAW
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 8 -->
-        <div>
-            <div class="slide-title-bar">Winner / Paused Announcement</div>
-            <div class="slide-wrapper">
-                <div class="slide slide-fullscreen" id="slide-winner">
-            <div class="signage-card-gold box-glow-gold" style="align-items: center; justify-content: center; text-align: center;">
-                <h2 class="font-headline glow-gold" style="font-size: 140px; color: #d4af37; text-transform: uppercase; margin: 0; line-height: 1;">CONGRATULATIONS</h2>
-                <div style="font-size: 52px; font-weight: 800; color: #ffffff; letter-spacing: 4px; text-transform: uppercase; margin-top: 10px;">TO OUR RECENT WINNER</div>
-                
-                <div class="winner-box" style="margin-top: 60px; padding: 60px 80px; max-width: 1400px; background: rgba(20, 20, 20, 0.7); backdrop-filter: blur(15px); border: 2px solid #d4af37; border-top: 6px solid #d4af37; border-bottom: 6px solid #d4af37; border-radius: 30px; box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15), 0 15px 40px rgba(0, 0, 0, 0.8);">
-                    <p style="font-size: 72px; font-weight: 600; color: #cbd5e1; margin: 0; line-height: 1.5;">
-                        They successfully found the Ace of Spades and took home the<br>
-                        <strong style="font-size: 96px; color: #f59e0b; display: block; margin: 30px 0;">$2700 JACKPOT!</strong>
-                    </p>
-                    <p style="font-size: 48px; font-weight: 700; color: #94a3b8; margin-top: 40px; text-transform: uppercase; letter-spacing: 2px;">
-                        Game play is currently paused and will reset in a few weeks.<br>
-                        Resuming October 13th when the Jackpot reaches $500!
-                    </p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    
-        </div>
-
-        <!-- Slide 9 -->
-        <div>
-            <div class="slide-title-bar">Hall of Winners</div>
-            <div class="slide-wrapper">
-                <div class="slide slide-fullscreen" id="slide-hall-of-winners">
-            <div class="signage-card-gold box-glow-gold">
-                <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #d4af37, #f59e0b, #d4af37, transparent);"></div>
-                <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid rgba(212, 175, 55, 0.25); padding-bottom: 26px;">
-                    <div style="display: flex; align-items: center; gap: 26px;">
-                        <div style="width: 104px; height: 104px; border-radius: 24px; background: rgba(212, 175, 55, 0.15); border: 2.5px solid rgba(212, 175, 55, 0.45); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);">
-                            <span class="material-symbols-outlined" style="font-size: 86px; color: #d4af37;">workspace_premium</span>
+        <!-- Slide: Tuesday Rules -->
+        <div class="slide slide-fullscreen" id="slide-tuesday">
+            <div class="signage-card-gold box-glow-gold" style="justify-content: flex-start;">
+                <div class="slide-header">
+                    <div class="header-left">
+                        <div class="header-icon-box">
+                            <span class="material-symbols-outlined">calendar_month</span>
                         </div>
                         <div>
-                            <h2 class="font-headline" style="font-size: 104px; line-height: 0.95; letter-spacing: 2px; color: #ffffff; text-transform: uppercase; margin: 0;">HALL OF WINNERS</h2>
-                            <div style="font-size: 44px; font-weight: 800; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; font-family: 'Playfair Display', serif; margin-top: 6px;">CELEBRATING OUR JACKPOT CHAMPIONS</div>
+                            <h2 class="text-title">TUESDAY DRAW</h2>
+                            <div class="text-subtitle">COASTERS TAVERN WEEKLY EVENT</div>
                         </div>
+                    </div>
+                    <div class="time-badge-gold glow-gold" style="font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 900; background: rgba(212, 175, 55, 0.18); border: 3px solid #d4af37; color: #d4af37; padding: 20px 45px; border-radius: 9999px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); white-space: nowrap;" id="text-tue-time">
+                        5<span class="blink-colon">:</span>30 PM
                     </div>
                 </div>
-                
-                <div style="display: flex; flex-direction: column; gap: 24px; margin: auto 0; padding: 30px 0;">
-                    <!-- Winner 1 -->
-                    <div class="signage-row" style="justify-content: space-between; padding: 20px 40px;">
-                        <div style="display: flex; align-items: center; gap: 32px;">
-                            <div style="width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #f59e0b); display: flex; align-items: center; justify-content: center; font-size: 48px; font-weight: 900; color: #11141d; box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);">1</div>
-                            <div>
-                                <div style="font-size: 54px; font-weight: 800; color: #ffffff; letter-spacing: 1px;">Lucky Winner</div>
-                                <div style="font-size: 36px; font-weight: 700; color: #94a3b8; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px;">September 26, 2026</div>
-                            </div>
-                        </div>
-                        <div class="font-headline glow-gold" style="font-size: 80px; font-weight: 900; color: #d4af37;">
-                            $2700
-                        </div>
+                <div class="content-flex-col">
+                    <div class="signage-row-unified" style="animation-delay: 0.1s;">
+                        <div class="row-icon row-icon-amber"><span class="material-symbols-outlined" style="font-size: 64px; color: #f59e0b;">schedule</span></div>
+                        <span class="row-text-label">Beverage Window:</span>
+                        <span class="row-text-value">4:30 PM <span style="opacity:0.5">-</span> 5:30 PM</span>
                     </div>
-                    <!-- Empty placeholders for future winners -->
-                    <div class="signage-row" style="justify-content: space-between; padding: 20px 40px; opacity: 0.5; border-style: dashed; border-width: 2px; border-color: rgba(255,255,255,0.2);">
-                        <div style="display: flex; align-items: center; gap: 32px;">
-                            <div style="width: 72px; height: 72px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 48px; font-weight: 900; color: #94a3b8;">2</div>
-                            <div style="font-size: 48px; font-weight: 700; color: #94a3b8; font-style: italic;">Awaiting Next Winner...</div>
-                        </div>
+                    <div class="signage-row-unified" style="animation-delay: 0.2s;">
+                        <div class="row-icon row-icon-gold"><span class="material-symbols-outlined" style="font-size: 64px; color: #d4af37;">confirmation_number</span></div>
+                        <span class="row-text-value" style="font-family: 'Inter', sans-serif;">1 Ticket with every beverage purchased</span>
                     </div>
-                </div>
-
-                <div style="padding-top: 22px; border-top: 2px solid rgba(212, 175, 55, 0.2); display: flex; justify-content: center; align-items: center; font-size: 40px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #94a3b8;">
-                    WILL YOU BE NEXT? GET YOUR TICKETS AT THE BAR!
+                    <div class="signage-row-unified" style="animation-delay: 0.3s;">
+                        <div class="row-icon row-icon-amber"><span class="material-symbols-outlined" style="font-size: 64px; color: #f59e0b;">alarm_on</span></div>
+                        <span class="row-text-label">Draw Time:</span>
+                        <span class="row-text-value" style="color: #f59e0b;">5:30 PM Sharp!</span>
+                    </div>
+                    <div class="signage-row-unified" style="animation-delay: 0.4s; background: rgba(212, 175, 55, 0.1); border-color: rgba(212, 175, 55, 0.4);">
+                        <div class="row-icon row-icon-gold"><span class="material-symbols-outlined" style="font-size: 64px; color: #d4af37;">local_bar</span></div>
+                        <span class="row-text-value" style="color: #d4af37;">Bonus: Includes Members Pint Draw!</span>
+                    </div>
                 </div>
             </div>
-        </div></div>
+        </div>
 
-    </div>
+        <!-- Slide: Saturday Rules -->
+        <div class="slide slide-fullscreen" id="slide-saturday">
+            <div class="signage-card-amber box-glow-amber" style="justify-content: flex-start;">
+                <div class="slide-header" style="border-bottom-color: rgba(245, 158, 11, 0.25);">
+                    <div class="header-left">
+                        <div class="header-icon-box" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.45); box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);">
+                            <span class="material-symbols-outlined" style="color: #f59e0b;">event_available</span>
+                        </div>
+                        <div>
+                            <h2 class="text-title">SATURDAY DRAW</h2>
+                            <div class="text-subtitle text-subtitle-amber">COASTERS TAVERN WEEKLY EVENT</div>
+                        </div>
+                    </div>
+                    <div class="time-badge-amber glow-amber" style="font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 900; background: rgba(245, 158, 11, 0.18); border: 3px solid #f59e0b; color: #f59e0b; padding: 20px 45px; border-radius: 9999px; box-shadow: 0 0 30px rgba(245, 158, 11, 0.3); white-space: nowrap;" id="text-sat-time">
+                        4<span class="blink-colon">:</span>30 PM
+                    </div>
+                </div>
+                <div class="content-flex-col">
+                    <div class="signage-row-unified" style="animation-delay: 0.1s;">
+                        <div class="row-icon row-icon-amber"><span class="material-symbols-outlined" style="font-size: 64px; color: #f59e0b;">schedule</span></div>
+                        <span class="row-text-label">Beverage Window:</span>
+                        <span class="row-text-value">3:30 PM <span style="opacity:0.5">-</span> 4:30 PM</span>
+                    </div>
+                    <div class="signage-row-unified" style="animation-delay: 0.2s;">
+                        <div class="row-icon row-icon-gold"><span class="material-symbols-outlined" style="font-size: 64px; color: #d4af37;">confirmation_number</span></div>
+                        <span class="row-text-value" style="font-family: 'Inter', sans-serif;">1 Ticket with every beverage purchased</span>
+                    </div>
+                    <div class="signage-row-unified" style="animation-delay: 0.3s;">
+                        <div class="row-icon row-icon-amber"><span class="material-symbols-outlined" style="font-size: 64px; color: #f59e0b;">alarm_on</span></div>
+                        <span class="row-text-label">Draw Time:</span>
+                        <span class="row-text-value" style="color: #f59e0b;">4:30 PM Sharp!</span>
+                    </div>
+                    <div class="signage-row-unified" style="animation-delay: 0.4s; background: rgba(212, 175, 55, 0.1); border-color: rgba(212, 175, 55, 0.4);">
+                        <div class="row-icon row-icon-gold"><span class="material-symbols-outlined" style="font-size: 64px; color: #d4af37;">local_fire_department</span></div>
+                        <span class="row-text-value" style="color: #d4af37;">Bonus: Weekly Meat Raffles!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Navigation Hub (Optional) -->
-    <div style="margin-top: 50px; text-align: center; padding-bottom: 50px;">
-        <a href="index.html" style="color: #000; background: #d4af37; text-decoration: none; font-weight: bold; border: 2px solid #d4af37; padding: 12px 30px; border-radius: 5px; text-transform: uppercase; letter-spacing: 2px;">Return to Main Display</a>
-    </div>
+        <!-- Slide: How To Win -->
+        <div class="slide slide-fullscreen" id="slide-win">
+            <div class="signage-card-gold box-glow-gold" style="justify-content: flex-start;">
+                <div class="slide-header">
+                    <div class="header-left">
+                        <div class="header-icon-box">
+                            <span class="material-symbols-outlined">help</span>
+                        </div>
+                        <div>
+                            <h2 class="text-title">HOW TO WIN</h2>
+                            <div class="text-subtitle">YOUR PATHWAY TO THE JACKPOT</div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(14, 17, 24, 0.9); border: 3px solid #d4af37; color: #d4af37; font-family: 'Inter', sans-serif; font-size: 38px; font-weight: 800; padding: 20px 45px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.25); white-space: nowrap;">
+                        If your ticket is pulled from barrel:
+                    </div>
+                </div>
+                <div class="content-grid-3">
+                    <!-- Step 01 -->
+                    <div class="step-card" style="animation-delay: 0.1s;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px;">
+                            <span class="step-number glow-gold">01</span>
+                            <div class="header-icon-box" style="width: 100px; height: 100px;"><span class="material-symbols-outlined" style="font-size: 64px;">lock_open</span></div>
+                        </div>
+                        <div>
+                            <div class="step-title">PICK A<br>CARD</div>
+                            <div class="step-desc">From the card vault<br><strong style="color: #ffffff; font-size: 44px;">(52 cards total)</strong></div>
+                        </div>
+                    </div>
+                    <!-- Step 02 -->
+                    <div class="step-card" style="animation-delay: 0.2s;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px;">
+                            <span class="step-number glow-gold">02</span>
+                            <div class="header-icon-box" style="width: 100px; height: 100px;"><span class="material-symbols-outlined" style="font-size: 64px;">playing_cards</span></div>
+                        </div>
+                        <div>
+                            <div class="step-title">REVEAL<br>CARD</div>
+                            <div class="step-desc">Any card other than<br><strong style="color: #ffffff; font-size: 44px;">the Ace of Spades</strong></div>
+                        </div>
+                    </div>
+                    <!-- Step 03 -->
+                    <div class="step-card" style="animation-delay: 0.3s; background: rgba(212, 175, 55, 0.1); border-color: rgba(212, 175, 55, 0.5);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px;">
+                            <span class="step-number glow-gold">03</span>
+                            <div class="header-icon-box" style="width: 100px; height: 100px; background: rgba(245, 158, 11, 0.2); border-color: #f59e0b;"><span class="material-symbols-outlined" style="font-size: 64px; color: #f59e0b;">paid</span></div>
+                        </div>
+                        <div>
+                            <div class="step-title" style="color: #f59e0b;">WIN<br>$100</div>
+                            <div class="step-desc" style="color: #cbd5e1; white-space: normal;">Card is destroyed & Jackpot increases by <strong style="color: #f59e0b; font-size: 44px;">$100</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide: Vault Deck -->
+        <div class="slide slide-fullscreen" id="slide-vault">
+            <div class="signage-card-gold box-glow-gold" style="justify-content: flex-start;">
+                <div class="slide-header">
+                    <div class="header-left">
+                        <div class="header-icon-box">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lock</span>
+                        </div>
+                        <div>
+                            <h2 class="text-title">THE CARD VAULT</h2>
+                            <div class="text-subtitle">LIVE REAL-TIME CARD DECK INVENTORY</div>
+                        </div>
+                    </div>
+                    <div class="glow-gold" style="font-family: 'Playfair Display', serif; background: rgba(212, 175, 55, 0.18); border: 3px solid #d4af37; color: #d4af37; font-size: 64px; font-weight: 900; line-height: 1; padding: 24px 50px; border-radius: 9999px; box-shadow: 0 0 35px rgba(212, 175, 55, 0.45); white-space: nowrap; animation: pulseGlow 3s infinite;">
+                        ODDS OF ACE: <span id="vault-odds-display" style="color: #ffffff;">1 IN 36</span>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 80px; flex-grow: 1; padding: 20px;">
+                    <!-- Left: 3D Playing Cards -->
+                    <div style="position: relative; width: 450px; height: 500px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-left: 40px; animation: slideUpFade 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;">
+                        <div style="position: absolute; width: 260px; height: 380px; background: rgba(14, 17, 24, 0.9); border-radius: 24px; border: 3px solid rgba(212, 175, 55, 0.35); transform: rotate(-14deg) translateX(-55px); display: flex; flex-direction: column; justify-content: space-between; padding: 24px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);">
+                            <div style="font-family: 'Playfair Display', serif; font-size: 64px; color: rgba(212, 175, 55, 0.8); font-weight: 900; line-height: 0.9;">52</div>
+                            <div style="font-family: 'Inter', sans-serif; font-weight: 800; text-align: center; font-size: 36px; color: #94a3b8; letter-spacing: 3px;">TOTAL</div>
+                            <div style="font-family: 'Playfair Display', serif; font-size: 64px; color: rgba(212, 175, 55, 0.8); font-weight: 900; line-height: 0.9; text-align: right; transform: rotate(180deg);">52</div>
+                        </div>
+                        <div style="position: absolute; width: 260px; height: 380px; background: rgba(14, 17, 24, 0.9); border-radius: 24px; border: 3px solid rgba(245, 158, 11, 0.5); transform: rotate(14deg) translateX(55px); display: flex; flex-direction: column; justify-content: space-between; padding: 24px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);">
+                            <div id="card-fanned-flipped-top" style="font-family: 'Playfair Display', serif; font-size: 64px; color: #f59e0b; font-weight: 900; line-height: 0.9;">#16</div>
+                            <div style="font-family: 'Inter', sans-serif; font-weight: 800; text-align: center; font-size: 36px; color: #f59e0b; letter-spacing: 3px;">MISSED</div>
+                            <div id="card-fanned-flipped-bot" style="font-family: 'Playfair Display', serif; font-size: 64px; color: #f59e0b; font-weight: 900; line-height: 0.9; text-align: right; transform: rotate(180deg);">#16</div>
+                        </div>
+                        <div class="box-glow-gold" style="position: relative; z-index: 20; width: 310px; height: 440px; background: linear-gradient(180deg, #181c28 0%, #080a0f 100%); border: 4px solid #d4af37; border-radius: 28px; display: flex; flex-direction: column; justify-content: space-between; padding: 28px; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(212, 175, 55, 0.4);">
+                            <div style="font-family: 'Playfair Display', serif; font-size: 72px; color: #d4af37; font-weight: 900; line-height: 0.9;">?</div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div style="font-family: 'Inter', sans-serif; font-size: 80px; font-weight: 900; color: #ffffff; line-height: 1;" id="vault-remaining-num">36</div>
+                                <div style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 36px; color: #d4af37; letter-spacing: 4px; margin-top: 10px;">REMAINING</div>
+                            </div>
+                            <div style="font-family: 'Playfair Display', serif; font-size: 72px; color: #d4af37; font-weight: 900; line-height: 0.9; text-align: right; transform: rotate(180deg);">?</div>
+                        </div>
+                    </div>
+                    <!-- Right: Stats -->
+                    <div style="display: flex; flex-direction: column; gap: 40px; width: 100%; max-width: 900px; animation: slideUpFade 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;">
+                        <div class="signage-row-unified" style="padding: 36px 48px;">
+                            <div class="row-icon row-icon-amber" style="width: 110px; height: 110px;"><span class="material-symbols-outlined" style="font-size: 76px; color: #f59e0b;">layers</span></div>
+                            <span class="row-text-label" style="font-size: 60px;">Total Deck Size:</span>
+                            <span class="row-text-value" style="font-size: 76px; margin-left: auto;">52 CARDS</span>
+                        </div>
+                        <div class="signage-row-unified" style="padding: 36px 48px;">
+                            <div class="row-icon row-icon-gold" style="width: 110px; height: 110px;"><span class="material-symbols-outlined" style="font-size: 76px; color: #d4af37;">block</span></div>
+                            <span class="row-text-label" style="font-size: 60px;">Cards Destroyed:</span>
+                            <span class="row-text-value" id="vault-flipped-num" style="font-size: 76px; margin-left: auto; color: #d4af37;">16 CARDS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide: Winner Announcement -->
+        <div class="slide slide-fullscreen" id="slide-winner">
+            <div class="signage-card-gold box-glow-gold" style="align-items: center; justify-content: center; text-align: center;">
+                <h2 class="text-title" style="font-size: 160px; color: #d4af37;">CONGRATULATIONS</h2>
+                <div style="display: flex; align-items: baseline; gap: 30px; margin: 40px 0;">
+                    <span style="font-family: 'Inter', sans-serif; font-size: 70px; font-weight: 800; color: #ffffff;">Ticket</span>
+                    <span id="display-winner-ticket" style="font-family: 'Playfair Display', serif; font-size: 140px; font-weight: 900; color: #f59e0b;">#0</span>
+                </div>
+                <h3 id="display-winner-name" style="font-family: 'Playfair Display', serif; font-size: 110px; font-weight: 800; color: #ffffff; margin: 0; text-transform: uppercase;">WINNER NAME</h3>
+                <p style="font-family: 'Inter', sans-serif; font-size: 46px; font-weight: 700; color: #94a3b8; margin-top: 50px; text-transform: uppercase; letter-spacing: 3px; line-height: 1.4;">
+                    Game play is currently paused and will reset in a few weeks.<br>
+                    <strong style="color: #ffffff;">Resuming October 13th when the Jackpot reaches $500!</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide: Hall of Winners -->
+        <div class="slide slide-fullscreen" id="slide-hall-of-winners">
+            <div class="signage-card-gold box-glow-gold" style="justify-content: flex-start;">
+                <div class="slide-header">
+                    <div class="header-left">
+                        <div class="header-icon-box">
+                            <span class="material-symbols-outlined">emoji_events</span>
+                        </div>
+                        <div>
+                            <h2 class="text-title">HALL OF WINNERS</h2>
+                            <div class="text-subtitle">RECENT CHASE THE ACE CHAMPIONS</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-flex-col" id="winners-list" style="margin-top: 20px;">
+                    <!-- Dynamically populated, fallback hardcoded for layout -->
+                    <div class="signage-row-unified" style="padding: 28px 48px; background: rgba(212, 175, 55, 0.15); border-color: rgba(212, 175, 55, 0.4);">
+                        <div class="row-icon row-icon-gold" style="width: 100px; height: 100px; background: linear-gradient(135deg, #d4af37, #f59e0b); border: none;">
+                            <span style="font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; color: #11141d;">1</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column;">
+                            <span style="font-family: 'Playfair Display', serif; font-size: 58px; font-weight: 900; color: #ffffff; letter-spacing: 2px;">Lucky Winner</span>
+                            <span style="font-family: 'Inter', sans-serif; font-size: 34px; font-weight: 700; color: #d4af37; letter-spacing: 3px; text-transform: uppercase; margin-top: 6px;">September 26, 2026</span>
+                        </div>
+                        <span style="font-family: 'Playfair Display', serif; font-size: 80px; font-weight: 900; color: #f59e0b; margin-left: auto;">$2,700</span>
+                    </div>
+                    <div class="signage-row-unified" style="padding: 28px 48px; opacity: 0.6; border-style: dashed;">
+                        <div class="row-icon" style="width: 100px; height: 100px; background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2);">
+                            <span style="font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; color: #94a3b8;">2</span>
+                        </div>
+                        <span style="font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; color: #94a3b8; font-style: italic;">Awaiting Next Winner...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <script>
         // One-time draw reset to unpause and set jackpot to 500
