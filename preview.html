@@ -599,7 +599,11 @@
             }
 
             // Dynamically adjust main subtitle text based on paused state
-            const isPaused = localStorage.getItem('cta_paused') === 'true';
+            let isPaused = localStorage.getItem('cta_paused') === 'true';
+            const pauseEndDate = new Date('2026-10-13T00:00:00').getTime();
+            if (Date.now() < pauseEndDate) {
+                isPaused = true;
+            }
             const subtitleEl = document.getElementById('text-main-subtitle');
             if (subtitleEl) {
                 if (isPaused) {
@@ -646,8 +650,13 @@
             // Sync Safe Vault Card Deck Countdown
             const totalCards = 52;
             const storedCards = localStorage.getItem('cta_cards_remaining') || 36;
-            const remaining = Math.max(1, Math.min(totalCards, parseInt(storedCards) || 36));
-            const flipped = totalCards - remaining;
+            let remaining = Math.max(1, Math.min(totalCards, parseInt(storedCards) || 36));
+            let flipped = totalCards - remaining;
+
+            if (isPaused) {
+                remaining = 0;
+                flipped = 0;
+            }
 
             const remainingEl = document.getElementById('vault-remaining-num');
             const flippedEl = document.getElementById('vault-flipped-num');
@@ -656,10 +665,10 @@
             const fannedBot = document.getElementById('card-fanned-flipped-bot');
 
             if (remainingEl) remainingEl.innerText = remaining;
-            if (flippedEl) flippedEl.innerText = `${flipped} CARDS`;
-            if (oddsEl) oddsEl.innerText = `1 IN ${remaining}`;
-            if (fannedTop) fannedTop.innerText = `#${flipped}`;
-            if (fannedBot) fannedBot.innerText = `#${flipped}`;
+            if (flippedEl) flippedEl.innerText = isPaused ? '0 CARDS' : `${flipped} CARDS`;
+            if (oddsEl) oddsEl.innerText = isPaused ? 'PAUSED' : `1 IN ${remaining}`;
+            if (fannedTop) fannedTop.innerText = isPaused ? '-' : `#${flipped}`;
+            if (fannedBot) fannedBot.innerText = isPaused ? '-' : `#${flipped}`;
         }
         
         loadPreviewData();

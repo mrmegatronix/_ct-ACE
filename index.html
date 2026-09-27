@@ -480,7 +480,7 @@
 
             if (isGameplayPaused) {
                 // Show main, jackpot, next-draw, winner, and hall of winners. Skip "countdown-slide" (draw starts in) because there is no draw imminent.
-                return slideId === 'slide-main' || slideId === 'slide-jackpot' || slideId === 'next-draw-slide' || slideId === 'slide-winner' || slideId === 'slide-hall-of-winners';
+                return slideId === 'slide-main' || slideId === 'slide-jackpot' || slideId === 'next-draw-slide' || slideId === 'slide-winner' || slideId === 'slide-hall-of-winners' || slideId === 'slide-vault';
             }
 
             // Normal rotation: hide the winner announcement slide
@@ -960,8 +960,13 @@
         function updateCardCountdown() {
             const total = 52;
             const stored = localStorage.getItem('cta_cards_remaining') || 36;
-            const remaining = Math.max(1, Math.min(total, parseInt(stored) || 36));
-            const flipped = total - remaining;
+            let remaining = Math.max(1, Math.min(total, parseInt(stored) || 36));
+            let flipped = total - remaining;
+
+            if (isGameplayPaused) {
+                remaining = 0;
+                flipped = 0;
+            }
 
             const remainingEl = document.getElementById('vault-remaining-num');
             const flippedEl = document.getElementById('vault-flipped-num');
@@ -970,10 +975,10 @@
             const fannedBot = document.getElementById('card-fanned-flipped-bot');
 
             if (remainingEl) remainingEl.innerText = remaining;
-            if (flippedEl) flippedEl.innerText = `${flipped} CARDS`;
-            if (oddsEl) oddsEl.innerText = `1 IN ${remaining}`;
-            if (fannedTop) fannedTop.innerText = `#${flipped}`;
-            if (fannedBot) fannedBot.innerText = `#${flipped}`;
+            if (flippedEl) flippedEl.innerText = isGameplayPaused ? '0 CARDS' : `${flipped} CARDS`;
+            if (oddsEl) oddsEl.innerText = isGameplayPaused ? 'PAUSED' : `1 IN ${remaining}`;
+            if (fannedTop) fannedTop.innerText = isGameplayPaused ? '-' : `#${flipped}`;
+            if (fannedBot) fannedBot.innerText = isGameplayPaused ? '-' : `#${flipped}`;
         }
         updateCardCountdown();
         setInterval(updateCardCountdown, 2000);
