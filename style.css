@@ -645,9 +645,9 @@ ul.rules-list li,
 }
 
 .signage-card-gold {
-    background: rgba(14, 17, 24, 0.94);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background: rgba(14, 17, 24, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 28px;
     border: 2px solid rgba(212, 175, 55, 0.45);
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(212, 175, 55, 0.15);
@@ -663,9 +663,9 @@ ul.rules-list li,
 }
 
 .signage-card-amber {
-    background: rgba(14, 17, 24, 0.94);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background: rgba(14, 17, 24, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 28px;
     border: 2px solid rgba(245, 158, 11, 0.5);
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(245, 158, 11, 0.15);
