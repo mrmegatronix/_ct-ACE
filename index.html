@@ -801,8 +801,6 @@
             const s = Math.floor((diff % (1000 * 60)) / 1000);
 
             // Update DOM
-            const pad = (n) => n < 10 ? '0' + n : n;
-            
             document.getElementById('nd-d').innerText = pad(d);
             document.getElementById('nd-h').innerText = pad(h);
             document.getElementById('nd-m').innerText = pad(m);
