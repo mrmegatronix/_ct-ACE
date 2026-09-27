@@ -569,9 +569,7 @@
 
         function parseSignageCsv(text) {
             if (!text) return null;
-            const lines = text.trim().split(/
-?
-/).map(line => line.split(','));
+            const lines = text.trim().split(/\r?\n/).map(line => line.split(','));
             if (lines.length < 3) return null;
 
             let jackpot = 500;
