@@ -90,12 +90,16 @@
         <div>
             <div class="slide-title-bar">Main Title & Logo</div>
             <div class="slide-wrapper">
-                <div class="slide" id="slide-main">
-                    <img src="logo.png" alt="Venue Logo" class="venue-logo" onerror="this.style.display='none'">
-                    <h1 id="text-main-title">CHASE THE<br><span class="title-spade">♠</span>ACE<span class="title-spade">♠</span></h1>
-                    <img src="ace-of-spades.png" alt="Ace of Spades" class="ace-logo" onerror="this.style.display='none'">
-                    <h2 id="text-main-subtitle" style="text-align: center; width: 100%;">JOIN US FOR OUR TWO WEEKLY DRAWS:&#10;TUESDAYS &amp; SATURDAYS</h2>
-                </div>
+                <div class="slide slide-fullscreen active" id="slide-main">
+            <div class="signage-card-gold box-glow-gold" style="align-items: center; justify-content: center; text-align: center; gap: 40px;">
+                <img src="logo.png" alt="Venue Logo" class="venue-logo" style="width: 250px; height: auto; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));" onerror="this.style.display='none'">
+                <h1 id="text-main-title" class="font-headline glow-gold" style="font-size: 160px; line-height: 0.9; color: #ffffff; margin: 0; letter-spacing: 2px; text-transform: uppercase;">
+                    CHASE THE<br><span class="title-spade" style="color: #d4af37;">♠</span>ACE<span class="title-spade" style="color: #d4af37;">♠</span>
+                </h1>
+                <img src="ace-of-spades.png" alt="Ace of Spades" class="ace-logo" style="height: 280px; filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.3));" onerror="this.style.display='none'">
+                <h2 id="text-main-subtitle" style="font-size: 40px; font-weight: 800; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; margin-top: 20px; white-space: pre-line;">JOIN US FOR OUR TWO WEEKLY DRAWS:&#10;TUESDAYS &amp; SATURDAYS</h2>
+            </div>
+        </div>
             </div>
         </div>
 
@@ -103,11 +107,20 @@
         <div>
             <div class="slide-title-bar">Current Jackpot</div>
             <div class="slide-wrapper">
-                <div class="slide" id="slide-jackpot">
-                    <h2>CURRENT JACKPOT</h2>
-                    <div class="jackpot-amount" id="display-jackpot">$500.00</div>
-                    <div class="countdown-label" id="text-jackpot-footer" style="margin-top: 40px; text-transform: uppercase; text-align: center; width: 100%;">Jackpot increases by $100 after every draw!</div>
+                <div class="slide slide-fullscreen" id="slide-jackpot">
+            <div class="signage-card-gold box-glow-gold" style="align-items: center; justify-content: center; text-align: center;">
+                <div style="width: 140px; height: 140px; border-radius: 30px; background: rgba(212, 175, 55, 0.15); border: 3px solid rgba(212, 175, 55, 0.45); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 35px rgba(212, 175, 55, 0.2); margin-bottom: 40px;">
+                    <span class="material-symbols-outlined" style="font-size: 80px; color: #d4af37;">attach_money</span>
                 </div>
+                <h2 class="font-headline" style="font-size: 90px; color: #ffffff; text-transform: uppercase; letter-spacing: 3px; margin: 0;">CURRENT JACKPOT</h2>
+                <div class="jackpot-amount glow-gold" id="display-jackpot" style="font-family: 'Playfair Display', serif; font-size: 260px; font-weight: 900; color: #d4af37; line-height: 1; margin: 20px 0;">
+                    $0.00
+                </div>
+                <div class="countdown-label" id="text-jackpot-footer" style="font-size: 42px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px; margin-top: 40px;">
+                    Jackpot increases by $100 after every draw!
+                </div>
+            </div>
+        </div>
             </div>
         </div>
 
@@ -115,19 +128,23 @@
         <div>
             <div class="slide-title-bar">Active Countdown</div>
             <div class="slide-wrapper">
-                <div class="slide" id="countdown-slide">
-                    <h2>DRAW STARTS IN</h2>
-                    <div class="countdown-timer" id="timer-display">
-                        <div>00<small>DAYS</small></div>
-                        <span class="blink-colon">:</span>
-                        <div>00<small>HOURS</small></div>
-                        <span class="blink-colon">:</span>
-                        <div>00<small>MINUTES</small></div>
-                        <span class="blink-colon">:</span>
-                        <div>00<small>SECONDS</small></div>
-                    </div>
-                    <div class="countdown-label">GET YOUR TICKETS NOW!</div>
+                <div class="slide slide-fullscreen" id="countdown-slide">
+            <div class="signage-card-amber box-glow-amber" style="align-items: center; justify-content: center; text-align: center;">
+                <h2 class="font-headline" style="font-size: 90px; color: #ffffff; text-transform: uppercase; letter-spacing: 3px; margin: 0;">DRAW STARTS IN</h2>
+                <div class="countdown-timer glow-amber" id="timer-display" style="display: flex; gap: 20px; font-family: 'Playfair Display', serif; font-size: 200px; font-weight: 900; color: #f59e0b; margin: 40px 0; align-items: baseline; justify-content: center;">
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="cd-d">00</span><small style="font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">DAYS</small></div>
+                    <span class="blink-colon">:</span>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="cd-h">00</span><small style="font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">HOURS</small></div>
+                    <span class="blink-colon">:</span>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="cd-m">00</span><small style="font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">MINUTES</small></div>
+                    <span class="blink-colon">:</span>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="cd-s">00</span><small style="font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">SECONDS</small></div>
                 </div>
+                <div class="countdown-label" style="background: rgba(245, 158, 11, 0.18); border: 3px solid #f59e0b; color: #f59e0b; font-size: 52px; font-weight: 900; padding: 20px 50px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 2px; margin-top: 40px;">
+                    GET YOUR TICKETS NOW!
+                </div>
+            </div>
+        </div>
             </div>
         </div>
 
@@ -135,19 +152,23 @@
         <div>
             <div class="slide-title-bar">Next Draw</div>
             <div class="slide-wrapper">
-                <div class="slide" id="next-draw-slide">
-                    <h2>NEXT DRAW</h2>
-                    <div class="countdown-timer" id="next-draw-timer">
-                        <div>02<small>DAYS</small></div>
-                        <span class="blink-colon">:</span>
-                        <div>14<small>HOURS</small></div>
-                        <span class="blink-colon">:</span>
-                        <div>30<small>MINUTES</small></div>
-                        <span class="blink-colon">:</span>
-                        <div>00<small>SECONDS</small></div>
-                    </div>
-                    <h2 id="next-draw-label" style="margin-top: 20px; text-align: center; width: 100%;">SATURDAY DRAW</h2>
+                <div class="slide slide-fullscreen" id="next-draw-slide">
+            <div class="signage-card-gold box-glow-gold" style="align-items: center; justify-content: center; text-align: center;">
+                <h2 class="font-headline" style="font-size: 90px; color: #ffffff; text-transform: uppercase; letter-spacing: 3px; margin: 0;">NEXT DRAW</h2>
+                <div class="countdown-timer glow-gold" id="next-draw-timer" style="display: flex; gap: 20px; font-family: 'Playfair Display', serif; font-size: 200px; font-weight: 900; color: #d4af37; margin: 40px 0; align-items: baseline; justify-content: center;">
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="nd-d">00</span><small style="font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">DAYS</small></div>
+                    <span class="blink-colon">:</span>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="nd-h">00</span><small style="font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">HOURS</small></div>
+                    <span class="blink-colon">:</span>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="nd-m">00</span><small style="font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">MINUTES</small></div>
+                    <span class="blink-colon">:</span>
+                    <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;"><span id="nd-s">00</span><small style="font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: 3px; color: #94a3b8; margin-top: 10px;">SECONDS</small></div>
                 </div>
+                <h2 id="next-draw-label" style="font-size: 42px; font-weight: 700; color: #cbd5e1; text-transform: uppercase; letter-spacing: 2px; margin-top: 40px;">
+                    LOADING...
+                </h2>
+            </div>
+        </div>
             </div>
         </div>
 
@@ -444,18 +465,76 @@
         <div>
             <div class="slide-title-bar">Winner / Paused Announcement</div>
             <div class="slide-wrapper">
-                <div class="slide" id="slide-winner">
-                    <h2 id="text-winner-title">CONGRATULATIONS</h2>
-                    <div class="winner-box">
-                        <p id="text-winner-message">
-                            Congratulations to our recent <strong>$3400 WINNER!</strong><br><br>
-                            Chase the Ace gameplay is now paused and will resume & reset in a few weeks time!<br><br>
-                            Thank you for playing!
-                        </p>
-                    </div>
+                <div class="slide slide-fullscreen" id="slide-winner">
+            <div class="signage-card-gold box-glow-gold" style="align-items: center; justify-content: center; text-align: center;">
+                <h2 class="font-headline glow-gold" style="font-size: 140px; color: #d4af37; text-transform: uppercase; margin: 0; line-height: 1;">CONGRATULATIONS</h2>
+                <div style="font-size: 40px; font-weight: 800; color: #ffffff; letter-spacing: 4px; text-transform: uppercase; margin-top: 10px;">TO OUR RECENT WINNER</div>
+                
+                <div class="winner-box" style="margin-top: 60px; padding: 60px 80px; max-width: 1400px; background: rgba(20, 20, 20, 0.7); backdrop-filter: blur(15px); border: 2px solid #d4af37; border-top: 6px solid #d4af37; border-bottom: 6px solid #d4af37; border-radius: 30px; box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15), 0 15px 40px rgba(0, 0, 0, 0.8);">
+                    <p style="font-size: 56px; font-weight: 600; color: #cbd5e1; margin: 0; line-height: 1.5;">
+                        They successfully found the Ace of Spades and took home the<br>
+                        <strong style="font-size: 96px; color: #f59e0b; display: block; margin: 30px 0;">$2700 JACKPOT!</strong>
+                    </p>
+                    <p style="font-size: 32px; font-weight: 700; color: #94a3b8; margin-top: 40px; text-transform: uppercase; letter-spacing: 2px;">
+                        Game play is currently paused and will reset in a few weeks.<br>
+                        Resuming October 13th when the Jackpot reaches $500!
+                    </p>
                 </div>
             </div>
         </div>
+
+    </div>
+
+    
+        </div>
+
+        <!-- Slide 9 -->
+        <div>
+            <div class="slide-title-bar">Hall of Winners</div>
+            <div class="slide-wrapper">
+                <div class="slide slide-fullscreen" id="slide-hall-of-winners">
+            <div class="signage-card-gold box-glow-gold">
+                <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #d4af37, #f59e0b, #d4af37, transparent);"></div>
+                <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid rgba(212, 175, 55, 0.25); padding-bottom: 26px;">
+                    <div style="display: flex; align-items: center; gap: 26px;">
+                        <div style="width: 104px; height: 104px; border-radius: 24px; background: rgba(212, 175, 55, 0.15); border: 2.5px solid rgba(212, 175, 55, 0.45); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);">
+                            <span class="material-symbols-outlined" style="font-size: 68px; color: #d4af37;">workspace_premium</span>
+                        </div>
+                        <div>
+                            <h2 class="font-headline" style="font-size: 104px; line-height: 0.95; letter-spacing: 2px; color: #ffffff; text-transform: uppercase; margin: 0;">HALL OF WINNERS</h2>
+                            <div style="font-size: 28px; font-weight: 800; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; margin-top: 6px;">CELEBRATING OUR JACKPOT CHAMPIONS</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 24px; margin: auto 0; padding: 30px 0;">
+                    <!-- Winner 1 -->
+                    <div class="signage-row" style="justify-content: space-between; padding: 20px 40px;">
+                        <div style="display: flex; align-items: center; gap: 32px;">
+                            <div style="width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #f59e0b); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 900; color: #11141d; box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);">1</div>
+                            <div>
+                                <div style="font-size: 42px; font-weight: 800; color: #ffffff; letter-spacing: 1px;">Lucky Winner</div>
+                                <div style="font-size: 24px; font-weight: 700; color: #94a3b8; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px;">September 26, 2026</div>
+                            </div>
+                        </div>
+                        <div class="font-headline glow-gold" style="font-size: 64px; font-weight: 900; color: #d4af37;">
+                            $2700
+                        </div>
+                    </div>
+                    <!-- Empty placeholders for future winners -->
+                    <div class="signage-row" style="justify-content: space-between; padding: 20px 40px; opacity: 0.5; border-style: dashed; border-width: 2px; border-color: rgba(255,255,255,0.2);">
+                        <div style="display: flex; align-items: center; gap: 32px;">
+                            <div style="width: 72px; height: 72px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 900; color: #94a3b8;">2</div>
+                            <div style="font-size: 32px; font-weight: 700; color: #94a3b8; font-style: italic;">Awaiting Next Winner...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="padding-top: 22px; border-top: 2px solid rgba(212, 175, 55, 0.2); display: flex; justify-content: center; align-items: center; font-size: 26px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #94a3b8;">
+                    WILL YOU BE NEXT? GET YOUR TICKETS AT THE BAR!
+                </div>
+            </div>
+        </div></div>
 
     </div>
 
