@@ -569,7 +569,8 @@
 
         function parseSignageCsv(text) {
             if (!text) return null;
-            const lines = text.trim().split(/?
+            const lines = text.trim().split(/
+?
 /).map(line => line.split(','));
             if (lines.length < 3) return null;
 
@@ -579,13 +580,19 @@
             let labelA2 = '';
             let labelB2 = '';
 
-            // Find Jackpot Total (usually at bottom)
-            for (let i = lines.length - 1; i >= 0; i--) {
-                const row = lines[i];
-                if (row.length > 6 && typeof row[5] === 'string' && row[5].includes('JACKPOT TOTAL:')) {
-                    const rawJackpot = row[6] ? row[6].replace(/[^0-9.]/g, '') : '';
-                    if (rawJackpot) jackpot = parseFloat(rawJackpot);
-                    break;
+            // Read Jackpot Total specifically from G59 (row index 58, col index 6)
+            if (lines.length > 58 && lines[58].length > 6) {
+                const rawJackpot = lines[58][6] ? lines[58][6].replace(/[^0-9.]/g, '') : '';
+                if (rawJackpot) jackpot = parseFloat(rawJackpot);
+            } else {
+                // Fallback scan
+                for (let i = lines.length - 1; i >= 0; i--) {
+                    const row = lines[i];
+                    if (row.length > 6 && typeof row[5] === 'string' && row[5].includes('JACKPOT TOTAL:')) {
+                        const rawJackpot = row[6] ? row[6].replace(/[^0-9.]/g, '') : '';
+                        if (rawJackpot) jackpot = parseFloat(rawJackpot);
+                        break;
+                    }
                 }
             }
 
