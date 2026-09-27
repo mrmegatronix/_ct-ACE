@@ -692,10 +692,10 @@
         function updateCountdown() {
             if (isGameplayPaused) {
                 isCountdownActive = false;
-                document.getElementById('cd-d').innerText = '00';
-                document.getElementById('cd-h').innerText = '00';
-                document.getElementById('cd-m').innerText = '00';
-                document.getElementById('cd-s').innerText = '00';
+                document.getElementById('cd-d').innerHTML = '♠♠';
+                document.getElementById('cd-h').innerHTML = '♠♠';
+                document.getElementById('cd-m').innerHTML = '♠♠';
+                document.getElementById('cd-s').innerHTML = '♠♠';
                 return;
             }
 
@@ -732,7 +732,7 @@
 
                 const pad = (n) => n < 10 ? '0' + n : n;
                 
-                document.getElementById('cd-d').innerText = '00';
+                document.getElementById('cd-d').innerHTML = '♠♠';
                 document.getElementById('cd-h').innerText = pad(h);
                 document.getElementById('cd-m').innerText = pad(m);
                 document.getElementById('cd-s').innerText = pad(s);
@@ -750,10 +750,10 @@
             const pad = (n) => n < 10 ? '0' + n : n;
             
             if (isGameplayPaused) {
-                document.getElementById('nd-d').innerText = '00';
-                document.getElementById('nd-h').innerText = '00';
-                document.getElementById('nd-m').innerText = '00';
-                document.getElementById('nd-s').innerText = '00';
+                document.getElementById('nd-d').innerHTML = '♠♠';
+                document.getElementById('nd-h').innerHTML = '♠♠';
+                document.getElementById('nd-m').innerHTML = '♠♠';
+                document.getElementById('nd-s').innerHTML = '♠♠';
                 document.getElementById('next-draw-label').innerText = "PAUSED UNTIL JACKPOT HITS $500";
                 return;
             }
