@@ -577,8 +577,7 @@
             let jackpot = 500;
             let flipped = 0;
             let remaining = 52;
-            let labelA2 = '';
-            let labelB2 = '';
+            let chance = '1.92%';
 
             // Read Jackpot Total specifically from G59 (row index 58, col index 6)
             if (lines.length > 58 && lines[58].length > 6) {
@@ -596,15 +595,12 @@
                 }
             }
 
-            // Find max/current cards flipped by looking for the last COMPLETED row
-            // A row is considered completed if the 'WINNING TICKET NUMBER' (col 7) or 'NAME OF WINNER' (col 8) is filled
             let lastCompletedRow = null;
 
             for (let i = 2; i < lines.length; i++) {
                 const row = lines[i];
                 if (row.length < 4) continue;
                 
-                // Col 7 is Ticket Number, Col 8 is Name, Col 9 is Card Drawn
                 const ticketNum = row[7] ? row[7].trim() : '';
                 const winnerName = row[8] ? row[8].trim() : '';
                 const cardDrawn = (row.length > 9 && row[9]) ? row[9].trim() : '';
@@ -617,12 +613,13 @@
             if (lastCompletedRow) {
                 const rawFlipped = lastCompletedRow[3] ? lastCompletedRow[3].replace(/[^0-9]/g, '') : '';
                 flipped = rawFlipped !== '' ? parseInt(rawFlipped, 10) : 0;
+                chance = lastCompletedRow[4] ? lastCompletedRow[4].trim() : '1.92%';
             }
 
             flipped = Math.max(0, Math.min(52, flipped));
             remaining = 52 - flipped;
 
-            return { jackpot, remaining, flipped, labelA2, labelB2 };
+            return { jackpot, remaining, flipped, chance };
         }
 
 
@@ -671,6 +668,7 @@
                         if (parsed.remaining !== null) {
                             localStorage.setItem('cta_cards_remaining', parsed.remaining);
                             if (parsed.flipped !== null) localStorage.setItem('cta_cards_flipped', parsed.flipped);
+                            if (parsed.chance !== null) localStorage.setItem('cta_winning_chance', parsed.chance);
                             updateCardCountdown();
                         }
                         return;
@@ -958,14 +956,17 @@
 
         // --- Card Countdown / Vault Inventory Logic ---
         function updateCardCountdown() {
-            const total = 52;
-            const stored = localStorage.getItem('cta_cards_remaining') || 36;
-            let remaining = Math.max(1, Math.min(total, parseInt(stored) || 36));
-            let flipped = total - remaining;
+            const storedRemaining = localStorage.getItem('cta_cards_remaining');
+            const storedFlipped = localStorage.getItem('cta_cards_flipped');
+            const storedChance = localStorage.getItem('cta_winning_chance') || '1.92%';
+            
+            let remaining = storedRemaining !== null ? parseInt(storedRemaining) : 36;
+            let flipped = storedFlipped !== null ? parseInt(storedFlipped) : 16;
+            let chance = storedChance;
 
             if (isGameplayPaused) {
                 remaining = 0;
-                flipped = 0;
+                // Rely on the CSV's "flipped" (0) and "chance" (0.00%) for the paused state
             }
 
             const remainingEl = document.getElementById('vault-remaining-num');
@@ -975,8 +976,8 @@
             const fannedBot = document.getElementById('card-fanned-flipped-bot');
 
             if (remainingEl) remainingEl.innerText = remaining;
-            if (flippedEl) flippedEl.innerText = isGameplayPaused ? '0 CARDS' : `${flipped} CARDS`;
-            if (oddsEl) oddsEl.innerText = isGameplayPaused ? 'PAUSED' : `1 IN ${remaining}`;
+            if (flippedEl) flippedEl.innerText = `${flipped} CARDS`;
+            if (oddsEl) oddsEl.innerText = chance === '0.00%' ? '0.00%' : chance;
             if (fannedTop) fannedTop.innerText = isGameplayPaused ? '-' : `#${flipped}`;
             if (fannedBot) fannedBot.innerText = isGameplayPaused ? '-' : `#${flipped}`;
         }
