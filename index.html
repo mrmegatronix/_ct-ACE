@@ -390,8 +390,8 @@
                         <strong style="font-size: 96px; color: #f59e0b; display: block; margin: 30px 0;">$2700 JACKPOT!</strong>
                     </p>
                     <p style="font-size: 32px; font-weight: 700; color: #94a3b8; margin-top: 40px; text-transform: uppercase; letter-spacing: 2px;">
-                        Chase the Ace gameplay is now paused.<br>
-                        We will resume and reset the vault on Tuesday, October 13th!
+                        Game play is currently paused and will reset in a few weeks.<br>
+                        Resuming October 13th when the Jackpot reaches $500!
                     </p>
                 </div>
             </div>
@@ -479,8 +479,8 @@
             const slideId = slide.id;
 
             if (isGameplayPaused) {
-                // When gameplay is paused
-                return slideId === 'slide-main' || slideId === 'slide-winner' || slideId === 'slide-hall-of-winners';
+                // When gameplay is paused, show main, jackpot, winner, and hall of winners
+                return slideId === 'slide-main' || slideId === 'slide-jackpot' || slideId === 'slide-winner' || slideId === 'slide-hall-of-winners';
             }
 
             // Normal rotation: hide the winner announcement slide
@@ -848,22 +848,33 @@
                 }
             }
 
-            // Dynamically adjust main subtitle text
+            // Dynamically adjust main subtitle text and jackpot text
             const subtitleEl = document.getElementById('text-main-subtitle');
+            const jackpotFooter = document.getElementById('text-jackpot-footer');
+            
             if (subtitleEl) {
                 if (!originalMainSubtitle) {
                     originalMainSubtitle = subtitleEl.innerHTML;
                 }
                 if (isGameplayPaused) {
-                    subtitleEl.innerHTML = "GAMEPLAY TEMPORARILY ON HOLD<br>RESUMES OCT 13TH";
+                    subtitleEl.innerHTML = "GAME PLAY IS CURRENTLY PAUSED AND WILL RESET IN A FEW WEEKS<br>BUILDING BACK TO $500!";
                 } else {
                     const storedContent = localStorage.getItem('cta_slide_content');
                     const content = storedContent ? JSON.parse(storedContent) : null;
                     subtitleEl.innerHTML = (content && content['main-subtitle']) ? content['main-subtitle'] : originalMainSubtitle;
                 }
             }
+            
+            if (jackpotFooter) {
+                if (isGameplayPaused) {
+                    jackpotFooter.innerHTML = "GAME PLAY IS CURRENTLY PAUSED AND WILL RESET IN A FEW WEEKS<br>RESUMES WHEN JACKPOT HITS $500!";
+                    jackpotFooter.style.color = "#f59e0b"; // Highlight in amber when paused
+                } else {
+                    jackpotFooter.innerHTML = "Jackpot increases by $100 after every draw!";
+                    jackpotFooter.style.color = "#94a3b8";
+                }
+            }
         }
-
         updatePausedState();
         setInterval(updatePausedState, 2000);
 
