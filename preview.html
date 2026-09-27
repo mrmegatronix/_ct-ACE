@@ -97,7 +97,7 @@
                     CHASE THE<br><span class="title-spade" style="color: #d4af37;">♠</span>ACE<span class="title-spade" style="color: #d4af37;">♠</span>
                 </h1>
                 <img src="ace-of-spades.png" alt="Ace of Spades" class="ace-logo" style="height: 280px; filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.3));" onerror="this.style.display='none'">
-                <h2 id="text-main-subtitle" style="font-size: 40px; font-weight: 800; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; margin-top: 20px; white-space: pre-line;">JOIN US FOR OUR TWO WEEKLY DRAWS:&#10;TUESDAYS &amp; SATURDAYS</h2>
+                <h2 id="text-main-subtitle" style="font-size: 40px; font-weight: 800; color: #d4af37; letter-spacing: 4px; text-transform: uppercase; margin-top: 20px; white-space: pre-line;">GAME PLAY IS CURRENTLY PAUSED AND WILL RESET IN A FEW WEEKS<br>BUILDING BACK TO $500!</h2>
             </div>
         </div>
             </div>
@@ -643,8 +643,10 @@
             
             // Fetch Jackpot 
             const storedJackpot = localStorage.getItem('cta_jackpot') || localStorage.getItem('cta_jackpot_backup');
-            if (storedJackpot) {
-                document.getElementById('display-jackpot').innerText = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'NZD' }).format(storedJackpot);
+            if (isPaused) {
+                document.getElementById('display-jackpot').innerText = "$0.00";
+            } else if (storedJackpot) {
+                document.getElementById('display-jackpot').innerText = new Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD' }).format(storedJackpot);
             }
 
             // Sync Safe Vault Card Deck Countdown
@@ -658,6 +660,8 @@
 
             if (isPaused) {
                 remaining = 0;
+                flipped = 0;
+                chance = '0.00%';
             }
 
             // Hide the Tuesday, Saturday, and How to Win slides from the preview grid when paused
