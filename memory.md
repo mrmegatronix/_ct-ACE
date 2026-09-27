@@ -42,3 +42,4 @@
 
 ## 6. Agent References
 - [Agent Guidelines & Protocols](AGENTS.md)
+- **2026-09-28**: Redesigned all slides with gold glowing cards, synced data via Google Sheets CSV, added pause/hard-stop logic for Oct 2026, fixed font scaling for 1080p, and restored confetti effects.
